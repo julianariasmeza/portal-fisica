@@ -1,0 +1,61 @@
+name: Compilar documentos LaTeX
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'materiales/**.tex'
+      - '.github/workflows/compilar-latex.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-pictures \
+            texlive-lang-spanish \
+            texlive-fonts-recommended \
+            latexmk
+
+      - name: Compilar documentos
+        run: |
+          mkdir -p /tmp/latex-build
+          for archivo in materiales/*.tex; do
+            nombre=$(basename "$archivo" .tex)
+            mkdir -p "/tmp/latex-build/$nombre"
+
+            latexmk -pdf \
+              -interaction=nonstopmode \
+              -halt-on-error \
+              -file-line-error \
+              -output-directory="/tmp/latex-build/$nombre" \
+              "$archivo"
+
+            cp "/tmp/latex-build/$nombre/$nombre.pdf" \
+               "materiales/$nombre.pdf"
+          done
+
+      - name: Publicar PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add materiales/*.pdf
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualizar PDF compilados"
+            git push
+          fi
