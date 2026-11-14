@@ -1,0 +1,958 @@
+
+\documentclass[11pt,letterpaper]{article}
+
+% =========================================
+% PAQUETES
+% =========================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{lastpage}
+
+% TikZ antes de begin document
+\usetikzlibrary{
+ arrows.meta,
+ calc,
+ angles,
+ quotes,
+ positioning
+}
+
+\tcbuselibrary{breakable,skins}
+
+% =========================================
+% CONFIGURACIÓN
+% =========================================
+\geometry{
+ left=1.8cm,
+ right=1.8cm,
+ top=2.2cm,
+ bottom=2cm
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\headheight}{15pt}
+
+% =========================================
+% COLORES
+% =========================================
+\definecolor{azul}{RGB}{20,65,115}
+\definecolor{celeste}{RGB}{232,243,252}
+\definecolor{verde}{RGB}{0,130,100}
+\definecolor{morado}{RGB}{110,50,160}
+\definecolor{gris}{RGB}{246,248,251}
+\definecolor{naranja}{RGB}{230,110,35}
+
+% =========================================
+% ENCABEZADO
+% =========================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{\textcolor{azul}{
+\textbf{Física -- Educación Diversificada}
+}}
+
+\rhead{\textcolor{azul}{J. Arias}}
+
+\cfoot{
+Página \thepage\ de \pageref{LastPage}
+}
+
+\renewcommand{\headrulewidth}{0.5pt}
+
+% =========================================
+% ESTILOS DE RECUADROS
+% =========================================
+\newtcolorbox{seccion}[1]{
+ enhanced,
+ breakable,
+ colback=celeste,
+ colframe=azul,
+ colbacktitle=azul,
+ coltitle=white,
+ title=\textbf{#1},
+ fonttitle=\bfseries,
+ arc=2mm,
+ boxrule=0.8pt
+}
+
+\newtcolorbox{ejercicio}[1]{
+ enhanced,
+ breakable,
+ colback=white,
+ colframe=azul!55,
+ title=\textbf{Ejercicio #1},
+ colbacktitle=celeste,
+ coltitle=azul,
+ fonttitle=\bfseries,
+ arc=2mm,
+ boxrule=0.6pt
+}
+
+\newtcolorbox{reto}{
+ enhanced,
+ breakable,
+ colback=orange!5,
+ colframe=naranja,
+ title=\textbf{Desafío},
+ colbacktitle=naranja,
+ coltitle=white,
+ arc=2mm
+}
+
+% =========================================
+% COMANDOS
+% =========================================
+\newcommand{\respuesta}{
+\vspace{0.3cm}
+\textcolor{morado}{\textbf{Respuesta:}}
+\hrulefill
+\vspace{0.3cm}
+}
+
+\newcommand{\espacio}[1]{
+\vspace{#1}
+}
+
+\newcommand{\casilla}{
+$\square$
+}
+
+% Plano cartesiano reutilizable
+\newcommand{\plano}{
+\begin{tikzpicture}[scale=0.55]
+\draw[step=1,gray!25,very thin]
+(-6,-5) grid (6,5);
+
+\draw[-{Stealth},thick]
+(-6.3,0)--(6.4,0)
+node[right] {$x$};
+
+\draw[-{Stealth},thick]
+(0,-5.3)--(0,5.4)
+node[above] {$y$};
+
+\foreach \x in {-6,-4,-2,2,4,6}{
+\node[below,font=\scriptsize]
+at (\x,0) {\x};
+}
+
+\foreach \y in {-4,-2,2,4}{
+\node[left,font=\scriptsize]
+at (0,\y) {\y};
+}
+\end{tikzpicture}
+}
+
+% =========================================
+% DOCUMENTO
+% =========================================
+\begin{document}
+
+% =========================================
+% PORTADA
+% =========================================
+\begin{center}
+
+{\Large\bfseries
+\textcolor{azul}{
+PRÁCTICA DE FÍSICA
+}}
+
+\vspace{0.15cm}
+
+{\large
+Magnitudes escalares y vectoriales
+}
+
+\vspace{0.2cm}
+
+\textcolor{verde}{
+\textbf{Operaciones y componentes rectangulares}
+}
+
+\end{center}
+
+\begin{tcolorbox}[
+ colback=gris,
+ colframe=azul,
+ arc=2mm
+]
+
+\textbf{Estudiante:}
+\hrulefill
+
+\vspace{0.3cm}
+
+\textbf{Sección:}
+\underline{\hspace{3cm}}
+\hfill
+\textbf{Fecha:}
+\underline{\hspace{3cm}}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+ colback=celeste,
+ colframe=azul,
+ title=Indicaciones
+]
+
+\begin{itemize}[leftmargin=*]
+\item Resuelva cada ejercicio mostrando
+todos los procedimientos.
+
+\item Utilice calculadora científica
+en modo grados.
+
+\item Exprese las respuestas con
+las unidades correspondientes.
+
+\item Redondee a dos decimales
+cuando sea necesario.
+
+\item Realice las representaciones
+gráficas solicitadas.
+\end{itemize}
+
+\end{tcolorbox}
+
+% =========================================
+% SECCIÓN I
+% =========================================
+\section*{I. Magnitudes escalares y vectoriales}
+
+\begin{seccion}{
+Clasificación de magnitudes
+}
+
+Marque con una X la clasificación
+correcta de cada magnitud.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+
+\begin{tabular}{|p{8cm}|c|c|}
+\hline
+\textbf{Magnitud}
+& \textbf{Escalar}
+& \textbf{Vectorial}\\
+\hline
+Masa de $12\,\mathrm{kg}$
+& $\square$ & $\square$\\
+\hline
+Fuerza de $50\,\mathrm{N}$ al norte
+& $\square$ & $\square$\\
+\hline
+Tiempo de $35\,\mathrm{s}$
+& $\square$ & $\square$\\
+\hline
+Velocidad de $20\,\mathrm{m/s}$ al este
+& $\square$ & $\square$\\
+\hline
+Distancia de $250\,\mathrm{m}$
+& $\square$ & $\square$\\
+\hline
+Aceleración de $4\,\mathrm{m/s^2}$
+hacia abajo
+& $\square$ & $\square$\\
+\hline
+Temperatura de $300\,\mathrm{K}$
+& $\square$ & $\square$\\
+\hline
+Desplazamiento de $80\,\mathrm{m}$
+al oeste
+& $\square$ & $\square$\\
+\hline
+Rapidez de $15\,\mathrm{m/s}$
+& $\square$ & $\square$\\
+\hline
+Fuerza de $120\,\mathrm{N}$
+a $35^\circ$
+& $\square$ & $\square$\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{seccion}
+
+% =========================================
+% SECCIÓN II
+% =========================================
+\newpage
+
+\section*{II. Representación gráfica}
+
+\begin{seccion}{
+Representación de vectores
+}
+
+Utilice los planos cartesianos
+para representar los vectores.
+
+\end{seccion}
+
+\begin{ejercicio}{1}
+
+Represente los siguientes vectores
+utilizando una escala adecuada.
+
+\begin{enumerate}[label=\alph*)]
+\item $\vec A=40\,\mathrm{N}$ hacia el este.
+\item $\vec B=30\,\mathrm{N}$ hacia el norte.
+\item $\vec C=50\,\mathrm{N}$ hacia el oeste.
+\item $\vec D=20\,\mathrm{N}$ hacia el sur.
+\end{enumerate}
+
+\begin{center}
+\plano
+\end{center}
+
+\end{ejercicio}
+
+\begin{ejercicio}{2}
+
+Represente gráficamente los vectores:
+
+\begin{enumerate}[label=\alph*)]
+\item $\vec A=50\,\mathrm{N}$ a $30^\circ$.
+\item $\vec B=40\,\mathrm{N}$ a $120^\circ$.
+\item $\vec C=60\,\mathrm{N}$ a $210^\circ$.
+\item $\vec D=35\,\mathrm{N}$ a $300^\circ$.
+\end{enumerate}
+
+Los ángulos se miden desde
+el eje $x$ positivo.
+
+\begin{center}
+\plano
+\end{center}
+
+\end{ejercicio}
+
+% =========================================
+% SECCIÓN III
+% =========================================
+\newpage
+
+\section*{III. Suma y resta gráfica}
+
+\begin{seccion}{
+Método del triángulo y paralelogramo
+}
+
+Resuelva mediante el método gráfico
+indicado en cada ejercicio.
+
+\end{seccion}
+
+\begin{ejercicio}{3}
+
+Dos desplazamientos tienen las
+siguientes características:
+
+\[
+A=40\,\mathrm{m}
+\quad\text{hacia el este}
+\]
+
+\[
+B=30\,\mathrm{m}
+\quad\text{hacia el norte}
+\]
+
+\begin{enumerate}[label=\alph*)]
+\item Dibuje los vectores consecutivos.
+\item Trace la resultante.
+\item Determine gráficamente
+su magnitud y dirección.
+\end{enumerate}
+
+Escala sugerida:
+$1\,\mathrm{cm}=10\,\mathrm{m}$.
+
+\begin{center}
+\plano
+\end{center}
+
+\respuesta
+
+\end{ejercicio}
+\newpage
+\begin{ejercicio}{4}
+
+Dos fuerzas concurrentes actúan
+sobre un cuerpo:
+
+\[
+F_1=60\,\mathrm{N}
+\quad\text{a }0^\circ
+\]
+
+\[
+F_2=40\,\mathrm{N}
+\quad\text{a }60^\circ
+\]
+
+\begin{enumerate}[label=\alph*)]
+\item Dibuje ambas fuerzas.
+\item Complete el paralelogramo.
+\item Trace la resultante.
+\item Estime su magnitud y dirección.
+\end{enumerate}
+
+\begin{center}
+\plano
+\end{center}
+
+\respuesta
+
+\end{ejercicio}
+
+\newpage
+
+\begin{ejercicio}{5}
+
+Considere los vectores:
+
+\[
+\vec A=50\,\mathrm{N}
+\quad\text{hacia el este}
+\]
+
+\[
+\vec B=30\,\mathrm{N}
+\quad\text{hacia el norte}
+\]
+
+Represente gráficamente:
+
+\[
+\vec R=\vec A-\vec B
+\]
+
+Determine la magnitud y dirección
+de la resultante.
+
+\begin{center}
+\plano
+\end{center}
+
+\respuesta
+
+\end{ejercicio}
+
+% =========================================
+% SECCIÓN IV
+% =========================================
+\newpage
+
+\section*{IV. Vectores perpendiculares}
+
+\begin{seccion}{
+Magnitud y dirección de la resultante
+}
+
+Determine la magnitud y dirección
+de la resultante de cada par
+de vectores perpendiculares.
+
+\end{seccion}
+
+\begin{ejercicio}{6}
+
+Un estudiante camina
+$12\,\mathrm{m}$ hacia el este
+y después $16\,\mathrm{m}$
+hacia el norte.
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Magnitud del desplazamiento.
+\item Dirección respecto al este.
+\end{enumerate}
+
+\espacio{4cm}
+
+\respuesta
+
+\end{ejercicio}
+
+\begin{ejercicio}{7}
+
+Sobre un objeto actúan dos fuerzas:
+
+\[
+F_1=45\,\mathrm{N}
+\quad\text{hacia el este}
+\]
+
+\[
+F_2=60\,\mathrm{N}
+\quad\text{hacia el norte}
+\]
+
+Determine la magnitud y dirección
+de la fuerza resultante.
+
+\espacio{4cm}
+
+\respuesta
+
+\end{ejercicio}
+
+\begin{ejercicio}{8}
+
+Un vehículo se desplaza
+$80\,\mathrm{m}$ hacia el oeste
+y luego $60\,\mathrm{m}$
+hacia el sur.
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Magnitud del desplazamiento.
+\item Dirección de la resultante.
+\item Cuadrante correspondiente.
+\end{enumerate}
+
+\espacio{4cm}
+
+\respuesta
+
+\end{ejercicio}
+
+% =========================================
+% SECCIÓN V
+% =========================================
+\newpage
+
+\section*{V. Componentes rectangulares}
+
+\begin{seccion}{
+Descomposición de vectores
+}
+
+Calcule las componentes horizontal
+y vertical de cada vector.
+
+\end{seccion}
+
+\begin{ejercicio}{9}
+
+Una fuerza de $100\,\mathrm{N}$
+forma un ángulo de $35^\circ$
+con el eje $x$ positivo.
+
+Determine:
+
+\[
+F_x=\underline{\hspace{4cm}}
+\]
+
+\[
+F_y=\underline{\hspace{4cm}}
+\]
+
+\espacio{3cm}
+
+\end{ejercicio}
+
+\begin{ejercicio}{10}
+
+Un vector de magnitud
+$150\,\mathrm{N}$ forma
+un ángulo de $125^\circ$
+con el eje $x$ positivo.
+
+Determine sus componentes.
+
+\espacio{4cm}
+
+\respuesta
+
+\end{ejercicio}
+\newpage
+\begin{ejercicio}{11}
+
+Una fuerza de $200\,\mathrm{N}$
+forma un ángulo de $230^\circ$
+con el eje $x$ positivo.
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Componente horizontal.
+\item Componente vertical.
+\item Cuadrante correspondiente.
+\end{enumerate}
+
+\espacio{4cm}
+
+\respuesta
+
+\end{ejercicio}
+
+\begin{ejercicio}{12}
+
+Un vector de $80\,\mathrm{N}$
+forma un ángulo de $315^\circ$.
+
+Determine sus componentes
+rectangulares.
+
+\espacio{4cm}
+
+\respuesta
+
+\end{ejercicio}
+
+% =========================================
+% SECCIÓN VI
+% =========================================
+\newpage
+
+\section*{VI. Fuerzas concurrentes}
+
+\begin{seccion}{
+Resultantes por componentes rectangulares
+}
+
+Complete las tablas de componentes
+y determine la magnitud y dirección
+de cada resultante.
+
+\end{seccion}
+
+\begin{ejercicio}{13}
+
+Sobre un cuerpo actúan tres fuerzas:
+
+\[
+F_1=100\,\mathrm{N}
+\quad\text{hacia el este}
+\]
+
+\[
+F_2=80\,\mathrm{N}
+\quad\text{hacia el norte}
+\]
+
+\[
+F_3=40\,\mathrm{N}
+\quad\text{hacia el oeste}
+\]
+
+Complete:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+
+\begin{tabular}{|c|c|c|}
+\hline
+Fuerza & $F_x$ (N) & $F_y$ (N)\\
+\hline
+$F_1$ & &\\
+\hline
+$F_2$ & &\\
+\hline
+$F_3$ & &\\
+\hline
+$\sum$ & &\\
+\hline
+\end{tabular}
+\end{center}
+
+\espacio{3cm}
+
+\respuesta
+
+\end{ejercicio}
+
+\newpage
+
+\begin{ejercicio}{14}
+
+Cuatro fuerzas actúan sobre
+un mismo punto:
+
+\[
+F_1=120\,\mathrm{N},\quad 0^\circ
+\]
+
+\[
+F_2=90\,\mathrm{N},\quad 60^\circ
+\]
+
+\[
+F_3=70\,\mathrm{N},\quad 150^\circ
+\]
+
+\[
+F_4=50\,\mathrm{N},\quad 270^\circ
+\]
+
+Complete la tabla:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+
+\begin{tabular}{|c|c|c|}
+\hline
+Fuerza & $F_x$ (N) & $F_y$ (N)\\
+\hline
+$F_1$ & &\\
+\hline
+$F_2$ & &\\
+\hline
+$F_3$ & &\\
+\hline
+$F_4$ & &\\
+\hline
+$\sum$ & &\\
+\hline
+\end{tabular}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Resultante horizontal.
+\item Resultante vertical.
+\item Magnitud de la resultante.
+\item Dirección y cuadrante.
+\end{enumerate}
+
+\espacio{3cm}
+
+\respuesta
+
+\end{ejercicio}
+
+% =========================================
+% EJERCICIO CON DIAGRAMA
+% =========================================
+\newpage
+
+\begin{ejercicio}{15}
+
+Determine la magnitud y dirección
+de la fuerza resultante representada
+en la figura.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+
+\draw[-{Stealth},gray,thick]
+(-4,0)--(4.5,0)
+node[right] {$x$};
+
+\draw[-{Stealth},gray,thick]
+(0,-3)--(0,3.5)
+node[above] {$y$};
+
+\draw[-{Stealth},very thick,blue]
+(0,0)--(3,0);
+
+\draw[-{Stealth},very thick,green!60!black]
+(0,0)--(2.5,2.1);
+
+\draw[-{Stealth},very thick,purple]
+(0,0)--(-2.5,1.8);
+
+\draw[-{Stealth},very thick,red]
+(0,0)--(0,-2.5);
+
+\node[below,blue] at (2.2,0)
+{$F_1=80\,N$};
+
+\node[above,green!60!black]
+at (2.5,2.1) {$F_2=120\,N$};
+
+\node[above,purple]
+at (-2.5,1.8) {$F_3=90\,N$};
+
+\node[right,red] at (0,-2.3)
+{$F_4=40\,N$};
+
+\draw[orange,thick]
+(0.7,0) arc[
+start angle=0,
+end angle=40,
+radius=0.7
+];
+
+\node[orange] at (1.2,0.35)
+{$40^\circ$};
+
+\draw[orange,thick]
+(-0.7,0) arc[
+start angle=180,
+end angle=145,
+radius=0.7
+];
+
+\node[orange] at (-1.2,0.3)
+{$35^\circ$};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+
+\begin{tabular}{|c|c|c|}
+\hline
+Fuerza & $F_x$ (N) & $F_y$ (N)\\
+\hline
+$F_1$ & &\\
+\hline
+$F_2$ & &\\
+\hline
+$F_3$ & &\\
+\hline
+$F_4$ & &\\
+\hline
+$\sum$ & &\\
+\hline
+\end{tabular}
+\end{center}
+
+\espacio{2cm}
+
+\respuesta
+
+\end{ejercicio}
+
+% =========================================
+% RETO FINAL
+% =========================================
+\newpage
+
+\section*{VII. Desafío final}
+
+\begin{reto}
+
+Tres personas tiran de un objeto
+mediante cuerdas.
+
+Las fuerzas aplicadas son:
+
+\[
+F_1=150\,\mathrm{N}
+\quad\text{a }25^\circ
+\]
+
+\[
+F_2=120\,\mathrm{N}
+\quad\text{a }135^\circ
+\]
+
+\[
+F_3=90\,\mathrm{N}
+\quad\text{a }270^\circ
+\]
+
+Determine:
+
+\begin{enumerate}
+\item Las componentes de cada fuerza.
+\item La resultante horizontal.
+\item La resultante vertical.
+\item La magnitud de la fuerza resultante.
+\item Su dirección y cuadrante.
+\item La representación gráfica.
+\end{enumerate}
+
+\end{reto}
+
+\begin{center}
+\plano
+\end{center}
+
+\espacio{2cm}
+
+\respuesta
+
+% =========================================
+% AUTOEVALUACIÓN
+% =========================================
+\newpage
+
+\section*{Autoevaluación}
+
+\begin{tcolorbox}[
+ colback=celeste,
+ colframe=azul,
+ title=Revisión de mi aprendizaje
+]
+
+Marque las habilidades que
+considera que domina.
+
+\vspace{0.3cm}
+
+\casilla\ Identifico magnitudes
+escalares y vectoriales.
+
+\vspace{0.4cm}
+
+\casilla\ Represento vectores
+gráficamente.
+
+\vspace{0.4cm}
+
+\casilla\ Sumo y resto vectores.
+
+\vspace{0.4cm}
+
+\casilla\ Resuelvo vectores
+perpendiculares.
+
+\vspace{0.4cm}
+
+\casilla\ Calculo componentes
+rectangulares.
+
+\vspace{0.4cm}
+
+\casilla\ Determino la magnitud
+de una resultante.
+
+\vspace{0.4cm}
+
+\casilla\ Determino correctamente
+la dirección y el cuadrante.
+
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\textbf{¿Qué tema necesito practicar más?}
+
+\vspace{2cm}
+
+\hrulefill
+
+\vspace{0.5cm}
+
+\textbf{Observaciones del docente:}
+
+\vspace{2cm}
+
+\hrulefill
+
+\end{document}

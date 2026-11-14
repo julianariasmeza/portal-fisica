@@ -1,0 +1,875 @@
+
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ==========================================
+% PAQUETES
+% ==========================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+
+% TikZ antes de begin document
+\usetikzlibrary{
+ arrows.meta,
+ calc,
+ positioning,
+ patterns
+}
+
+% ==========================================
+% COLORES Y DISEÑO
+% ==========================================
+\definecolor{azul}{RGB}{0,100,185}
+\definecolor{azuloscuro}{RGB}{15,60,115}
+\definecolor{verde}{RGB}{0,145,95}
+\definecolor{morado}{RGB}{115,55,175}
+\definecolor{naranja}{RGB}{240,105,15}
+\definecolor{celeste}{RGB}{230,243,255}
+
+\usetheme{Madrid}
+
+\setbeamercolor{structure}{fg=azuloscuro}
+\setbeamercolor{frametitle}{
+ bg=azuloscuro,
+ fg=white
+}
+\setbeamercolor{block title}{
+ bg=azul,
+ fg=white
+}
+\setbeamercolor{block body}{
+ bg=celeste,
+ fg=black
+}
+\setbeamercolor{block title example}{
+ bg=verde,
+ fg=white
+}
+\setbeamercolor{block body example}{
+ bg=green!5,
+ fg=black
+}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% ==========================================
+% COMANDOS
+% ==========================================
+\newcommand{\resultado}[1]{
+\[
+\boxed{\color{morado}#1}
+\]
+}
+
+\newcommand{\datos}[1]{
+\textbf{Datos:}\quad #1
+\par\medskip
+}
+
+\newcommand{\formula}[1]{
+\textbf{Fórmula:}
+\[
+#1
+\]
+}
+
+\newcommand{\sustitucion}[1]{
+\textbf{Sustitución:}
+\[
+#1
+\]
+}
+
+% Gráfica de posición-tiempo reutilizable
+% Argumento: lista de coordenadas
+\newcommand{\grafpos}[1]{
+\begin{tikzpicture}[
+ x=0.11cm,
+ y=0.075cm,
+ >=Stealth
+]
+\draw[->,thick]
+(0,0)--(57,0)
+node[right] {$t$ (s)};
+
+\draw[->,thick]
+(0,0)--(0,46)
+node[above] {$d$ (m)};
+
+\foreach \x in {10,20,30,40,50}{
+ \draw (\x,0)--(\x,-1);
+ \node[below,font=\scriptsize]
+ at (\x,-1) {\x};
+}
+
+\foreach \y in {10,20,30,40}{
+ \draw (0,\y)--(-1,\y);
+ \node[left,font=\scriptsize]
+ at (-1,\y) {\y};
+}
+
+\draw[
+ very thick,
+ azul,
+ mark=*
+] plot coordinates {#1};
+
+\end{tikzpicture}
+}
+
+% ==========================================
+% PORTADA
+% ==========================================
+\title{Gráficas del movimiento rectilíneo}
+
+\subtitle{
+Distancia, desplazamiento, rapidez,
+velocidad, pendiente y áreas
+}
+
+\author{Clases de Matemática Paraíso}
+
+\date{Física -- Educación Diversificada}
+
+\begin{document}
+
+% ==========================================
+% DIAPOSITIVA 1
+% ==========================================
+\begin{frame}
+\titlepage
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 2
+% ==========================================
+\begin{frame}{Objetivos de aprendizaje}
+
+Al finalizar esta unidad, el estudiante podrá:
+
+\begin{enumerate}
+\item Interpretar gráficas de movimiento.
+
+\item Calcular rapidez y velocidad
+mediante la pendiente.
+
+\item Determinar distancia recorrida
+y desplazamiento.
+
+\item Identificar intervalos de reposo.
+
+\item Calcular distancias mediante
+áreas bajo gráficas rapidez--tiempo.
+
+\item Interpretar gráficas
+velocidad--tiempo.
+\end{enumerate}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 3
+% ==========================================
+\section{Conceptos fundamentales}
+
+\begin{frame}{Distancia y desplazamiento}
+
+\begin{block}{Distancia recorrida}
+Es la longitud total del camino recorrido.
+
+Es una magnitud escalar y nunca es negativa.
+\end{block}
+
+\begin{block}{Desplazamiento}
+Es el cambio de posición de un cuerpo.
+
+\[
+\Delta d=d_f-d_i
+\]
+
+Puede ser positivo, negativo o cero.
+\end{block}
+
+\begin{exampleblock}{Ejemplo}
+Un estudiante camina $30\,\mathrm{m}$
+hacia el este y regresa $10\,\mathrm{m}$.
+
+\[
+\text{Distancia}=30+10=40\,\mathrm{m}
+\]
+
+\[
+\Delta d=30-10=20\,\mathrm{m}
+\]
+\end{exampleblock}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 4
+% ==========================================
+\begin{frame}{Rapidez y velocidad}
+
+\begin{block}{Rapidez media}
+Relaciona la distancia total
+con el tiempo transcurrido.
+
+\[
+v=\frac{\text{distancia total}}{t}
+\]
+\end{block}
+
+\begin{block}{Velocidad media}
+Relaciona el desplazamiento
+con el tiempo transcurrido.
+
+\[
+v_m=\frac{\Delta d}{\Delta t}
+\]
+\end{block}
+
+\begin{itemize}
+\item Rapidez: no indica dirección.
+\item Velocidad: incluye sentido del movimiento.
+\end{itemize}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 5
+% ==========================================
+\section{Gráficas posición-tiempo}
+
+\begin{frame}{Gráficas posición--tiempo}
+
+Una gráfica posición--tiempo representa
+cómo cambia la posición de un cuerpo.
+
+\begin{center}
+\grafpos{
+(0,0)
+(10,20)
+(30,30)
+(40,30)
+(50,10)
+}
+\end{center}
+
+\begin{block}{Interpretación}
+\begin{itemize}
+\item Recta ascendente: movimiento positivo.
+\item Recta horizontal: reposo.
+\item Recta descendente: movimiento negativo.
+\end{itemize}
+\end{block}
+
+\small
+Aquí $d$ representa la posición
+respecto al origen, no la distancia
+total acumulada.
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 6
+% ==========================================
+\begin{frame}{La pendiente de una gráfica}
+
+\begin{block}{Concepto fundamental}
+
+La pendiente de una gráfica
+posición--tiempo representa la velocidad.
+
+\[
+\boxed{
+v=\frac{d_f-d_i}{t_f-t_i}
+}
+\]
+
+\end{block}
+
+\begin{center}
+\begin{tikzpicture}[
+ x=0.22cm,
+ y=0.10cm,
+ >=Stealth
+]
+
+\draw[->,thick]
+(0,0)--(25,0)
+node[right] {$t$ (s)};
+
+\draw[->,thick]
+(0,0)--(0,35)
+node[above] {$d$ (m)};
+
+\draw[very thick,azul]
+(0,0)--(20,30);
+
+\draw[dashed,gray]
+(20,0)--(20,30)--(0,30);
+
+\node[below] at (20,0) {$20$};
+\node[left] at (0,30) {$30$};
+
+\end{tikzpicture}
+\end{center}
+
+\[
+v=\frac{30-0}{20-0}
+=1,5\,\mathrm{m/s}
+\]
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 7
+% ==========================================
+\begin{frame}{Ejemplo resuelto: posición--tiempo}
+
+\begin{columns}[T]
+
+\column{0.53\textwidth}
+
+\begin{center}
+\grafpos{
+(0,0)
+(10,20)
+(30,30)
+(40,30)
+(50,10)
+}
+\end{center}
+
+\column{0.47\textwidth}
+
+\begin{block}{Determine}
+\begin{enumerate}
+\item Velocidad en cada tramo.
+\item Distancia total.
+\item Desplazamiento.
+\item Intervalo de reposo.
+\end{enumerate}
+\end{block}
+
+\end{columns}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 8
+% ==========================================
+\begin{frame}{Solución: velocidades por intervalo}
+
+\small
+
+\textbf{Tramo I: de 0 a 10 s}
+
+\[
+v_1=\frac{20-0}{10-0}
+=2\,\mathrm{m/s}
+\]
+
+\textbf{Tramo II: de 10 a 30 s}
+
+\[
+v_2=\frac{30-20}{30-10}
+=0,5\,\mathrm{m/s}
+\]
+
+\textbf{Tramo III: de 30 a 40 s}
+
+\[
+v_3=\frac{30-30}{40-30}
+=0\,\mathrm{m/s}
+\]
+
+\textbf{Tramo IV: de 40 a 50 s}
+
+\[
+v_4=\frac{10-30}{50-40}
+=-2\,\mathrm{m/s}
+\]
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 9
+% ==========================================
+\begin{frame}{Solución: distancia y desplazamiento}
+
+\textbf{Distancia total}
+
+\[
+D=|20-0|+|30-20|
++|30-30|+|10-30|
+\]
+
+\[
+D=20+10+0+20
+\]
+
+\resultado{D=50\,\mathrm{m}}
+
+\textbf{Desplazamiento}
+
+\[
+\Delta d=d_f-d_i
+\]
+
+\[
+\Delta d=10-0
+\]
+
+\resultado{\Delta d=10\,\mathrm{m}}
+
+\begin{exampleblock}{Reposo}
+El móvil permanece en reposo
+entre $30\,\mathrm{s}$ y $40\,\mathrm{s}$.
+\end{exampleblock}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 10
+% ==========================================
+\begin{frame}{Práctica: posición--tiempo}
+
+\begin{center}
+\grafpos{
+(0,10)
+(10,30)
+(20,30)
+(30,0)
+(40,20)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}
+\item Velocidad de cada intervalo.
+\item Distancia total recorrida.
+\item Desplazamiento.
+\item Intervalo de reposo.
+\item Tramo de mayor rapidez.
+\end{enumerate}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 11
+% ==========================================
+\section{Gráficas rapidez-tiempo}
+
+\begin{frame}{Gráficas rapidez--tiempo}
+
+\begin{block}{Concepto fundamental}
+
+En una gráfica rapidez--tiempo,
+el área bajo la curva representa
+la distancia recorrida.
+
+\[
+\boxed{D=\text{Área bajo la curva}}
+\]
+
+\end{block}
+
+\begin{center}
+\begin{tikzpicture}[
+ x=0.8cm,
+ y=0.35cm,
+ >=Stealth
+]
+
+\draw[->,thick]
+(0,0)--(9,0)
+node[right] {$t$ (s)};
+
+\draw[->,thick]
+(0,0)--(0,12)
+node[above] {$v$ (m/s)};
+
+\fill[blue!15]
+(0,0)--(2,6)--(4,6)
+--(6,10)--(8,0)--cycle;
+
+\draw[very thick,azul]
+(0,0)--(2,6)--(4,6)
+--(6,10)--(8,0);
+
+\foreach \x in {2,4,6,8}{
+\node[below] at (\x,0) {\x};
+}
+
+\foreach \y in {2,4,6,8,10}{
+\node[left] at (0,\y) {\y};
+}
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 12
+% ==========================================
+\begin{frame}{Figuras geométricas y áreas}
+
+Para calcular la distancia,
+utilizamos las fórmulas de áreas.
+
+\begin{block}{Rectángulo}
+\[
+A=b\cdot h
+\]
+\end{block}
+
+\begin{block}{Triángulo}
+\[
+A=\frac{b\cdot h}{2}
+\]
+\end{block}
+
+\begin{block}{Trapecio}
+\[
+A=\frac{(B+b)h}{2}
+\]
+\end{block}
+
+En una gráfica rapidez--tiempo:
+
+\[
+\mathrm{s}\cdot\frac{\mathrm{m}}{\mathrm{s}}
+=\mathrm{m}
+\]
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 13
+% ==========================================
+\begin{frame}{Ejemplo: distancia mediante áreas}
+
+\begin{center}
+\begin{tikzpicture}[
+ x=0.85cm,
+ y=0.38cm,
+ >=Stealth
+]
+
+% Áreas
+\fill[blue!17]
+(0,0)--(2,6)--(2,0)--cycle;
+
+\fill[green!18]
+(2,0) rectangle (4,6);
+
+\fill[orange!17]
+(4,0)--(4,6)--(6,10)--(6,0)--cycle;
+
+\fill[purple!15]
+(6,0)--(6,10)--(8,0)--cycle;
+
+% Ejes
+\draw[->,thick]
+(0,0)--(9,0)
+node[right] {$t$ (s)};
+
+\draw[->,thick]
+(0,0)--(0,12)
+node[above] {$v$ (m/s)};
+
+% Curva
+\draw[very thick,azul]
+(0,0)--(2,6)--(4,6)
+--(6,10)--(8,0);
+
+% Divisiones
+\foreach \x in {2,4,6}{
+\draw[dashed,gray]
+(\x,0)--(\x,{ifthenelse(\x==6,10,6)});
+}
+
+% Etiquetas
+\node at (1,1.5) {I};
+\node at (3,3) {II};
+\node at (5,3) {III};
+\node at (6.7,3) {IV};
+
+\foreach \x in {2,4,6,8}{
+\node[below] at (\x,0) {\x};
+}
+
+\node[left] at (0,6) {6};
+\node[left] at (0,10) {10};
+
+\end{tikzpicture}
+\end{center}
+
+Determine la distancia recorrida
+en cada intervalo y la distancia total.
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 14
+% ==========================================
+\begin{frame}{Solución: áreas I y II}
+
+\textbf{Intervalo I}
+
+Triángulo:
+
+\[
+A_1=\frac{b\cdot h}{2}
+\]
+
+\[
+A_1=\frac{(2)(6)}{2}
+\]
+
+\resultado{A_1=6\,\mathrm{m}}
+
+\textbf{Intervalo II}
+
+Rectángulo:
+
+\[
+A_2=b\cdot h
+\]
+
+\[
+A_2=(2)(6)
+\]
+
+\resultado{A_2=12\,\mathrm{m}}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 15
+% ==========================================
+\begin{frame}{Solución: áreas III y IV}
+
+\textbf{Intervalo III}
+
+Trapecio:
+
+\[
+A_3=\frac{(B+b)h}{2}
+\]
+
+\[
+A_3=\frac{(10+6)(2)}{2}
+\]
+
+\resultado{A_3=16\,\mathrm{m}}
+
+\textbf{Intervalo IV}
+
+Triángulo:
+
+\[
+A_4=\frac{(2)(10)}{2}
+\]
+
+\resultado{A_4=10\,\mathrm{m}}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 16
+% ==========================================
+\begin{frame}{Distancia total recorrida}
+
+La distancia total corresponde
+a la suma de todas las áreas.
+
+\[
+D=A_1+A_2+A_3+A_4
+\]
+
+Sustituimos:
+
+\[
+D=6+12+16+10
+\]
+
+\resultado{D=44\,\mathrm{m}}
+
+\begin{exampleblock}{Interpretación}
+
+Durante los ocho segundos,
+el móvil recorrió una distancia
+total de $44\,\mathrm{m}$.
+
+\end{exampleblock}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 17
+% ==========================================
+\section{Gráficas velocidad-tiempo}
+
+\begin{frame}{Gráficas velocidad--tiempo}
+
+\begin{block}{Conceptos fundamentales}
+
+La pendiente representa la aceleración.
+
+\[
+\boxed{
+a=\frac{v_f-v_i}{t_f-t_i}
+}
+\]
+
+El área con signo representa
+el desplazamiento.
+
+\[
+\boxed{
+\Delta d=\text{Área con signo}
+}
+\]
+
+\end{block}
+
+\begin{itemize}
+\item Área sobre el eje: desplazamiento positivo.
+\item Área bajo el eje: desplazamiento negativo.
+\item La suma de áreas absolutas da
+la distancia total recorrida.
+\end{itemize}
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 18
+% ==========================================
+\begin{frame}{Ejemplo: velocidad negativa}
+
+\begin{center}
+\begin{tikzpicture}[
+ x=0.8cm,
+ y=0.35cm,
+ >=Stealth
+]
+
+\draw[->,thick]
+(0,0)--(9,0)
+node[right] {$t$ (s)};
+
+\draw[->,thick]
+(0,-5)--(0,7)
+node[above] {$v$ (m/s)};
+
+\fill[blue!20]
+(0,0) rectangle (4,4);
+
+\fill[orange!20]
+(4,-3) rectangle (8,0);
+
+\draw[very thick,azul]
+(0,4)--(4,4);
+
+\draw[very thick,naranja]
+(4,-3)--(8,-3);
+
+\draw[dashed,gray]
+(4,4)--(4,-3);
+
+\node[left] at (0,4) {4};
+\node[left] at (0,-3) {$-3$};
+
+\node[below right] at (4,0) {4};
+\node[below] at (8,0) {8};
+
+\end{tikzpicture}
+\end{center}
+
+\small
+En este ejemplo, el cambio de velocidad
+en $t=4\,\mathrm{s}$ es idealizado
+e instantáneo.
+
+\[
+A_1=(4)(4)=16\,\mathrm{m}
+\]
+
+\[
+A_2=(4)(-3)=-12\,\mathrm{m}
+\]
+
+\resultado{\Delta d=16-12=4\,\mathrm{m}}
+
+\[
+D=16+12=28\,\mathrm{m}
+\]
+
+\end{frame}
+
+% ==========================================
+% DIAPOSITIVA 19
+% ==========================================
+\begin{frame}{Resumen de la unidad}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+
+\begin{tabular}{|p{3.3cm}|p{6.3cm}|}
+\hline
+\textbf{Gráfica}
+&
+\textbf{Interpretación}\\
+\hline
+
+Posición--tiempo
+&
+Pendiente: velocidad\\
+\hline
+
+Distancia acumulada--tiempo
+&
+Pendiente: rapidez\\
+\hline
+
+Rapidez--tiempo
+&
+Área: distancia recorrida\\
+\hline
+
+Velocidad--tiempo
+&
+Pendiente: aceleración\\
+\hline
+
+Velocidad--tiempo
+&
+Área con signo: desplazamiento\\
+\hline
+
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+
+\begin{exampleblock}{Recuerde}
+
+Antes de resolver un ejercicio,
+identifique las magnitudes de los ejes,
+sus unidades y los intervalos.
+
+\end{exampleblock}
+
+\end{frame}
+
+\end{document}

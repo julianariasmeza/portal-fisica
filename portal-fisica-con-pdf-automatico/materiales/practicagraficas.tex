@@ -1,0 +1,1043 @@
+
+\documentclass[11pt,letterpaper]{article}
+
+% ==========================================
+% PAQUETES
+% ==========================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{lastpage}
+
+% ==========================================
+% TIKZ: ANTES DE BEGIN DOCUMENT
+% ==========================================
+\usetikzlibrary{
+ arrows.meta,
+ calc,
+ positioning,
+ patterns,
+ babel
+}
+
+% ==========================================
+% CONFIGURACIÓN DE PÁGINA
+% ==========================================
+\geometry{
+ left=1.8cm,
+ right=1.8cm,
+ top=2.3cm,
+ bottom=2cm
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\headheight}{15pt}
+
+% ==========================================
+% COLORES
+% ==========================================
+\definecolor{azul}{RGB}{20,65,115}
+\definecolor{celeste}{RGB}{232,243,252}
+\definecolor{verde}{RGB}{0,130,100}
+\definecolor{morado}{RGB}{110,50,160}
+\definecolor{gris}{RGB}{246,248,251}
+\definecolor{naranja}{RGB}{230,110,35}
+
+% ==========================================
+% ENCABEZADO Y PIE DE PÁGINA
+% ==========================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{
+ \small\textcolor{azul}{
+ \textbf{Física -- Educación Diversificada}
+ }
+}
+
+\rhead{
+ \small\textcolor{azul}{
+ Práctica de gráficas
+ }
+}
+
+\cfoot{
+ \small Página \thepage\ de \pageref{LastPage}
+}
+
+\renewcommand{\headrulewidth}{0.5pt}
+
+% ==========================================
+% RECUADROS
+% ==========================================
+\newtcolorbox{seccion}[1]{
+ enhanced,
+ breakable,
+ colback=celeste,
+ colframe=azul,
+ colbacktitle=azul,
+ coltitle=white,
+ title={#1},
+ fonttitle=\bfseries,
+ arc=2mm,
+ boxrule=0.8pt
+}
+
+\newtcolorbox{ejercicio}[1]{
+ enhanced,
+ breakable,
+ colback=white,
+ colframe=azul!55,
+ colbacktitle=celeste,
+ coltitle=azul,
+ title={Ejercicio #1},
+ fonttitle=\bfseries,
+ arc=2mm,
+ boxrule=0.6pt
+}
+
+\newtcolorbox{reto}{
+ enhanced,
+ breakable,
+ colback=orange!5,
+ colframe=naranja,
+ colbacktitle=naranja,
+ coltitle=white,
+ title={Desafío final},
+ fonttitle=\bfseries,
+ arc=2mm
+}
+
+% ==========================================
+% COMANDOS
+% ==========================================
+\newcommand{\respuesta}{
+ \par\vspace{0.3cm}
+ \textcolor{morado}{\textbf{Respuesta:}}
+ \hrulefill
+ \par\vspace{0.3cm}
+}
+
+\newcommand{\espacio}[1]{
+ \par\vspace{#1}
+}
+
+\newcommand{\casilla}{
+ $\square$
+}
+
+% ==========================================
+% GRÁFICA POSICIÓN-TIEMPO
+% ==========================================
+% #1 = lista de coordenadas
+%
+% Ejemplo:
+% \grafpos{(0,0) (10,20) (20,30)}
+%
+% El eje vertical representa posición d.
+% ==========================================
+\newcommand{\grafpos}[1]{
+\begin{tikzpicture}[
+ x=0.12cm,
+ y=0.085cm,
+ >=Stealth
+]
+
+% Cuadrícula
+\draw[
+ step=10,
+ gray!20,
+ very thin
+]
+(0,0) grid (50,40);
+
+% Eje horizontal
+\draw[->,thick]
+(0,0)--(55,0)
+node[right] {$t$ (s)};
+
+% Eje vertical
+\draw[->,thick]
+(0,0)--(0,46)
+node[above] {$d$ (m)};
+
+% Escala horizontal
+\foreach \x in {10,20,30,40,50}{
+ \draw (\x,0)--(\x,-1);
+ \node[
+ below,
+ font=\scriptsize
+ ] at (\x,-1) {\x};
+}
+
+% Escala vertical
+\foreach \y in {10,20,30,40}{
+ \draw (0,\y)--(-1,\y);
+ \node[
+ left,
+ font=\scriptsize
+ ] at (-1,\y) {\y};
+}
+
+% Trayectoria
+\draw[
+ very thick,
+ azul
+]
+plot coordinates {#1};
+
+\end{tikzpicture}
+}
+
+% ==========================================
+% GRÁFICA RAPIDEZ-TIEMPO
+% ==========================================
+\newcommand{\grafvel}[1]{
+\begin{tikzpicture}[
+ x=0.65cm,
+ y=0.30cm,
+ >=Stealth
+]
+
+\draw[
+ step=1,
+ gray!15,
+ very thin
+]
+(0,0) grid (10,12);
+
+\draw[->,thick]
+(0,0)--(11,0)
+node[right] {$t$ (s)};
+
+\draw[->,thick]
+(0,0)--(0,13)
+node[above] {$v$ (m/s)};
+
+\foreach \x in {2,4,6,8,10}{
+ \node[
+ below,
+ font=\scriptsize
+ ] at (\x,0) {\x};
+}
+
+\foreach \y in {2,4,6,8,10,12}{
+ \node[
+ left,
+ font=\scriptsize
+ ] at (0,\y) {\y};
+}
+
+\draw[
+ very thick,
+ azul
+]
+plot coordinates {#1};
+
+\end{tikzpicture}
+}
+
+% ==========================================
+% DOCUMENTO
+% ==========================================
+\begin{document}
+
+% ==========================================
+% PORTADA DE LA PRÁCTICA
+% ==========================================
+\begin{center}
+
+{\Large
+\bfseries
+\textcolor{azul}{
+PRÁCTICA DE FÍSICA
+}
+}
+
+\vspace{0.2cm}
+
+{\large
+Gráficas del movimiento rectilíneo
+}
+
+\vspace{0.2cm}
+
+\textcolor{verde}{
+\textbf{
+Pendientes, velocidades,
+distancias y desplazamientos
+}
+}
+
+\end{center}
+
+\begin{tcolorbox}[
+ colback=gris,
+ colframe=azul,
+ arc=2mm
+]
+
+\textbf{Estudiante:}
+\hrulefill
+
+\vspace{0.3cm}
+
+\textbf{Sección:}
+\underline{\hspace{3cm}}
+\hfill
+\textbf{Fecha:}
+\underline{\hspace{3cm}}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+ colback=celeste,
+ colframe=azul,
+ title={Indicaciones}
+]
+
+\begin{itemize}[leftmargin=*]
+\item Analice cuidadosamente cada gráfica.
+\item Identifique los intervalos de tiempo.
+\item Muestre los procedimientos matemáticos.
+\item Utilice las unidades correspondientes.
+\item Redondee a dos decimales si es necesario.
+\item Interprete los resultados obtenidos.
+\end{itemize}
+
+\end{tcolorbox}
+
+% ==========================================
+% SECCIÓN I
+% ==========================================
+\section*{I. Interpretación de gráficas}
+
+\begin{seccion}{
+Gráficas posición--tiempo
+}
+Observe cada gráfica y responda
+las preguntas planteadas.
+
+En estas gráficas, $d$ representa
+la posición respecto al origen.
+\end{seccion}
+\newpage
+% EJERCICIO 1
+\begin{ejercicio}{1}
+
+La siguiente gráfica representa
+la posición de un estudiante
+durante su recorrido.
+
+\begin{center}
+\grafpos{
+(0,0)
+(10,20)
+(20,20)
+(30,40)
+(40,10)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Posición inicial.
+\item Posición a los $10\,\mathrm{s}$.
+\item Posición a los $20\,\mathrm{s}$.
+\item Intervalo en que permanece en reposo.
+\item Intervalo en que regresa hacia el origen.
+\end{enumerate}
+
+\espacio{2cm}
+\respuesta
+
+\end{ejercicio}
+
+\newpage
+
+% EJERCICIO 2
+\begin{ejercicio}{2}
+
+La gráfica representa
+el movimiento de un ciclista.
+
+\begin{center}
+\grafpos{
+(0,10)
+(10,30)
+(20,30)
+(30,0)
+(40,20)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Posición inicial.
+\item Posición final.
+\item Intervalos de movimiento positivo.
+\item Intervalos de movimiento negativo.
+\item Intervalos de reposo.
+\end{enumerate}
+
+\espacio{2cm}
+\respuesta
+
+\end{ejercicio}
+\newpage
+% ==========================================
+% SECCIÓN II
+% ==========================================
+\section*{II. Pendiente y velocidad}
+
+\begin{seccion}{
+Cálculo de velocidades
+}
+
+Determine la velocidad de cada tramo
+utilizando la pendiente.
+
+\[
+v=\frac{d_f-d_i}{t_f-t_i}
+\]
+
+\end{seccion}
+
+% EJERCICIO 3
+\begin{ejercicio}{3}
+
+Observe la gráfica:
+
+\begin{center}
+\grafpos{
+(0,0)
+(10,30)
+(20,30)
+(30,10)
+(40,0)
+}
+\end{center}
+
+Calcule:
+
+\begin{enumerate}[label=\alph*)]
+\item Velocidad entre $0$ y $10\,\mathrm{s}$.
+\item Velocidad entre $10$ y $20\,\mathrm{s}$.
+\item Velocidad entre $20$ y $30\,\mathrm{s}$.
+\item Velocidad entre $30$ y $40\,\mathrm{s}$.
+\end{enumerate}
+
+\espacio{3cm}
+\respuesta
+
+\end{ejercicio}
+
+\newpage
+
+% EJERCICIO 4
+\begin{ejercicio}{4}
+
+Un automóvil presenta
+el siguiente movimiento.
+
+\begin{center}
+\grafpos{
+(0,0)
+(10,10)
+(20,40)
+(30,40)
+(40,20)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Velocidad de cada intervalo.
+\item Intervalo de mayor rapidez.
+\item Intervalo de reposo.
+\item Intervalo de velocidad negativa.
+\end{enumerate}
+
+\espacio{3cm}
+\respuesta
+
+\end{ejercicio}
+\newpage
+% ==========================================
+% SECCIÓN III
+% ==========================================
+\section*{III. Distancia y desplazamiento}
+
+\begin{seccion}{
+Distancia total y desplazamiento
+}
+
+Calcule la distancia total recorrida
+y el desplazamiento del móvil.
+
+Recuerde:
+
+\[
+\Delta d=d_f-d_i
+\]
+
+La distancia total es la suma
+de las longitudes recorridas
+en cada intervalo.
+
+\end{seccion}
+
+% EJERCICIO 5
+\begin{ejercicio}{5}
+
+Observe la gráfica:
+
+\begin{center}
+\grafpos{
+(0,0)
+(10,30)
+(20,10)
+(30,40)
+(40,20)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Distancia recorrida en cada intervalo.
+\item Distancia total.
+\item Desplazamiento.
+\item Rapidez media.
+\item Velocidad media.
+\end{enumerate}
+
+\espacio{3cm}
+\respuesta
+
+\end{ejercicio}
+
+\newpage
+
+% EJERCICIO 6
+\begin{ejercicio}{6}
+
+Un estudiante se desplaza
+según la siguiente gráfica.
+
+\begin{center}
+\grafpos{
+(0,20)
+(10,40)
+(20,10)
+(30,10)
+(40,30)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Posición inicial y final.
+\item Distancia total recorrida.
+\item Desplazamiento.
+\item Rapidez media.
+\item Velocidad media.
+\end{enumerate}
+
+\espacio{3cm}
+\respuesta
+
+\end{ejercicio}
+
+% ==========================================
+% SECCIÓN IV
+% ==========================================
+\newpage
+
+\section*{IV. Gráficas rapidez--tiempo}
+
+\begin{seccion}{
+Cálculo de distancias mediante áreas
+}
+
+Calcule las áreas geométricas
+correspondientes a cada intervalo.
+
+\[
+D=\text{Área bajo la gráfica}
+\]
+
+Utilice las fórmulas de área
+del triángulo, rectángulo
+y trapecio.
+
+\end{seccion}
+
+% EJERCICIO 7
+\begin{ejercicio}{7}
+
+La rapidez de un automóvil
+varía según la gráfica.
+
+\begin{center}
+\grafvel{
+(0,0)
+(2,6)
+(5,6)
+(8,0)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Distancia entre $0$ y $2\,\mathrm{s}$.
+\item Distancia entre $2$ y $5\,\mathrm{s}$.
+\item Distancia entre $5$ y $8\,\mathrm{s}$.
+\item Distancia total recorrida.
+\end{enumerate}
+
+\espacio{3cm}
+\respuesta
+
+\end{ejercicio}
+
+\newpage
+
+% EJERCICIO 8
+\begin{ejercicio}{8}
+
+Un motociclista presenta
+la siguiente gráfica rapidez--tiempo.
+
+\begin{center}
+\grafvel{
+(0,0)
+(2,4)
+(4,4)
+(6,10)
+(8,10)
+(10,0)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Distancia de $0$ a $2\,\mathrm{s}$.
+\item Distancia de $2$ a $4\,\mathrm{s}$.
+\item Distancia de $4$ a $6\,\mathrm{s}$.
+\item Distancia de $6$ a $8\,\mathrm{s}$.
+\item Distancia de $8$ a $10\,\mathrm{s}$.
+\item Distancia total.
+\end{enumerate}
+
+\espacio{3cm}
+\respuesta
+
+\end{ejercicio}
+\newpage
+% EJERCICIO 9
+\begin{ejercicio}{9}
+
+La rapidez de un vehículo
+se representa mediante los puntos:
+
+\[
+(0,0),\quad
+(3,9),\quad
+(6,9),\quad
+(9,0)
+\]
+
+donde el tiempo está en segundos
+y la rapidez en $\mathrm{m/s}$.
+
+Los puntos se unen mediante
+segmentos rectos.
+
+\begin{enumerate}[label=\alph*)]
+\item Construya la gráfica.
+\item Identifique las figuras geométricas.
+\item Calcule la distancia total.
+\item Determine la rapidez media.
+\end{enumerate}
+
+\espacio{5cm}
+\respuesta
+
+\end{ejercicio}
+
+% ==========================================
+% SECCIÓN V
+% ==========================================
+\newpage
+
+\section*{V. Gráficas velocidad--tiempo}
+
+\begin{seccion}{
+Aceleración y desplazamiento
+}
+
+Utilice la pendiente para calcular
+la aceleración:
+
+\[
+a=\frac{v_f-v_i}{t_f-t_i}
+\]
+
+El área con signo representa
+el desplazamiento.
+
+La suma de los valores absolutos
+de las áreas representa la
+distancia total recorrida.
+
+\end{seccion}
+
+% EJERCICIO 10
+\begin{ejercicio}{10}
+
+La velocidad de un automóvil
+aumenta uniformemente
+de $0$ a $12\,\mathrm{m/s}$
+durante $6\,\mathrm{s}$.
+
+\begin{enumerate}[label=\alph*)]
+\item Construya la gráfica velocidad--tiempo.
+\item Determine la aceleración.
+\item Calcule el desplazamiento.
+\end{enumerate}
+
+\espacio{5cm}
+\respuesta
+
+\end{ejercicio}
+\newpage
+% EJERCICIO 11
+\begin{ejercicio}{11}
+
+Un automóvil disminuye
+su velocidad uniformemente
+de $20\,\mathrm{m/s}$
+a $0\,\mathrm{m/s}$
+en $5\,\mathrm{s}$.
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item La aceleración.
+\item El desplazamiento durante el frenado.
+\item La gráfica velocidad--tiempo.
+\end{enumerate}
+
+\espacio{5cm}
+\respuesta
+
+\end{ejercicio}
+
+\newpage
+
+% EJERCICIO 12
+\begin{ejercicio}{12}
+
+La velocidad de un móvil
+cambia de la siguiente manera:
+
+\begin{center}
+\begin{tikzpicture}[
+ x=0.8cm,
+ y=0.35cm,
+ >=Stealth
+]
+
+% Cuadrícula
+\draw[
+ step=1,
+ gray!15,
+ very thin
+]
+(0,-5) grid (8,7);
+
+% Ejes
+\draw[->,thick]
+(0,0)--(9,0)
+node[right] {$t$ (s)};
+
+\draw[->,thick]
+(0,-5)--(0,8)
+node[above] {$v$ (m/s)};
+
+% Gráfica
+\draw[very thick,azul]
+(0,6)--(2,6)--(4,0)--(6,-4)--(8,-4);
+
+% Escala horizontal
+\foreach \x in {2,4,6,8}{
+ \draw (\x,0)--(\x,-0.15);
+ \node[
+ below right,
+ font=\scriptsize
+ ] at (\x,0) {\x};
+}
+
+% Escala vertical
+\foreach \y in {-4,-2,2,4,6}{
+ \draw (0,\y)--(-0.15,\y);
+ \node[
+ left,
+ font=\scriptsize
+ ] at (0,\y) {\y};
+}
+
+\end{tikzpicture}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Aceleración de cada intervalo.
+\item Desplazamiento positivo.
+\item Desplazamiento negativo.
+\item Desplazamiento total.
+\item Distancia total recorrida.
+\end{enumerate}
+
+\espacio{3cm}
+\respuesta
+
+\end{ejercicio}
+
+% ==========================================
+% SECCIÓN VI
+% ==========================================
+\newpage
+
+\section*{VI. Problemas integradores}
+
+\begin{seccion}{
+Aplicación de los conceptos
+}
+
+Resuelva los siguientes problemas
+mostrando todos los procedimientos.
+
+\end{seccion}
+
+% EJERCICIO 13
+\begin{ejercicio}{13}
+
+Un ciclista inicia su recorrido
+en la posición $d=0\,\mathrm{m}$.
+
+Durante los primeros $10\,\mathrm{s}$
+avanza hasta $40\,\mathrm{m}$.
+
+Permanece detenido durante
+$5\,\mathrm{s}$.
+
+Finalmente regresa hasta
+la posición $10\,\mathrm{m}$
+en otros $10\,\mathrm{s}$.
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Gráfica posición--tiempo.
+\item Velocidad de cada intervalo.
+\item Distancia total.
+\item Desplazamiento.
+\item Rapidez media.
+\item Velocidad media.
+\end{enumerate}
+
+\espacio{5cm}
+\respuesta
+
+\end{ejercicio}
+\newpage
+% EJERCICIO 14
+\begin{ejercicio}{14}
+
+Un vehículo parte del reposo
+y aumenta uniformemente su rapidez
+hasta $16\,\mathrm{m/s}$
+durante $8\,\mathrm{s}$.
+
+Mantiene esa rapidez durante
+$5\,\mathrm{s}$ y después
+frena uniformemente hasta detenerse
+en $4\,\mathrm{s}$.
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Gráfica rapidez--tiempo.
+\item Distancia durante la aceleración.
+\item Distancia a rapidez constante.
+\item Distancia durante el frenado.
+\item Distancia total recorrida.
+\end{enumerate}
+
+\espacio{5cm}
+\respuesta
+
+\end{ejercicio}
+
+\newpage
+
+% EJERCICIO 15
+\begin{ejercicio}{15}
+
+Un automóvil se desplaza
+según la siguiente gráfica.
+
+\begin{center}
+\grafpos{
+(0,0)
+(10,40)
+(20,40)
+(30,10)
+(40,30)
+}
+\end{center}
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Velocidad de cada tramo.
+\item Distancia total.
+\item Desplazamiento.
+\item Rapidez media.
+\item Velocidad media.
+\item Intervalo de mayor rapidez.
+\end{enumerate}
+
+\espacio{4cm}
+\respuesta
+
+\end{ejercicio}
+
+% ==========================================
+% SECCIÓN VII
+% ==========================================
+\newpage
+
+\section*{VII. Desafío final}
+
+\begin{reto}
+
+\textbf{Ejercicio 16.}
+
+Un autobús inicia su movimiento
+desde el reposo.
+
+Durante los primeros
+$5\,\mathrm{s}$ aumenta
+uniformemente su rapidez
+hasta $10\,\mathrm{m/s}$.
+
+Luego mantiene esa rapidez
+durante $8\,\mathrm{s}$.
+
+Finalmente disminuye
+uniformemente su rapidez
+hasta detenerse en $5\,\mathrm{s}$.
+
+Determine:
+
+\begin{enumerate}[label=\alph*)]
+\item Gráfica rapidez--tiempo.
+\item Aceleración inicial.
+\item Aceleración durante el frenado.
+\item Distancia de cada intervalo.
+\item Distancia total.
+\item Rapidez media de todo el recorrido.
+\end{enumerate}
+
+\end{reto}
+
+\espacio{7cm}
+\respuesta
+
+% ==========================================
+% AUTOEVALUACIÓN
+% ==========================================
+\newpage
+
+\section*{Autoevaluación}
+
+\begin{tcolorbox}[
+ colback=celeste,
+ colframe=azul,
+ title={Revisión de mi aprendizaje}
+]
+
+Marque las habilidades que domina.
+
+\vspace{0.3cm}
+
+\casilla\ Interpreto gráficas
+posición--tiempo.
+
+\vspace{0.4cm}
+
+\casilla\ Calculo velocidades
+mediante pendientes.
+
+\vspace{0.4cm}
+
+\casilla\ Identifico intervalos
+de reposo y retroceso.
+
+\vspace{0.4cm}
+
+\casilla\ Calculo distancia total
+y desplazamiento.
+
+\vspace{0.4cm}
+
+\casilla\ Calculo distancias
+mediante áreas geométricas.
+
+\vspace{0.4cm}
+
+\casilla\ Interpreto gráficas
+velocidad--tiempo.
+
+\vspace{0.4cm}
+
+\casilla\ Determino aceleraciones
+mediante pendientes.
+
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\textbf{¿Qué tema necesito practicar más?}
+
+\espacio{2cm}
+\hrulefill
+
+\vspace{0.5cm}
+
+\textbf{Observaciones del docente:}
+
+\espacio{2cm}
+\hrulefill
+
+\end{document}

@@ -1,0 +1,206 @@
+
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern,amsmath,amssymb,geometry,xcolor,tikz,tcolorbox,fancyhdr,enumitem,lastpage,array}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\tcbuselibrary{skins,breakable}
+\geometry{margin=1.85cm,top=2.3cm,bottom=2cm}
+\definecolor{azul}{RGB}{20,65,115}\definecolor{verde}{RGB}{0,130,90}\definecolor{morado}{RGB}{116,53,166}\definecolor{naranja}{RGB}{225,103,33}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}\lhead{\textcolor{azul}{\bfseries Física -- Educación Diversificada}}\rhead{\textcolor{azul}{J. Arias}}\cfoot{\thepage\ de \pageref{LastPage}}\renewcommand{\headrulewidth}{0.5pt}
+\newtcolorbox{bloque}[1]{enhanced,breakable,colback=blue!3,colframe=azul,colbacktitle=azul,coltitle=white,title=\bfseries #1,arc=2mm,boxrule=.65pt}
+\newtcolorbox{problema}[1]{enhanced,breakable,colback=white,colframe=azul!50,colbacktitle=blue!9,coltitle=azul,title=\bfseries Ejercicio #1,arc=2mm,boxrule=.6pt}
+\newcommand{\espacio}[1]{\par\vspace{#1}\par}
+\newcommand{\renglon}{\par\textcolor{morado}{\bfseries Respuesta:}\ \dotfill\par}
+\newcommand{\vehiculo}[5]{% x y color nombre velocidad
+\draw[fill=#3!12,draw=#3,thick,rounded corners=2pt] (#1,#2) rectangle ++(1.3,.38);
+\fill[black!70] ($(#1,#2)+(.25,-.03)$) circle (.085);
+\fill[black!70] ($(#1,#2)+(1.05,-.03)$) circle (.085);
+\node[font=\bfseries\scriptsize] at ($(#1,#2)+(.65,.19)$) {#4};
+\node[above,font=\scriptsize] at ($(#1,#2)+(.65,.40)$) {#5};}
+\newcommand{\flechaD}[3]{\draw[-{Stealth[length=2.5mm]},very thick,#3] (#1,#2)--++(1.2,0);}
+\newcommand{\flechaI}[3]{\draw[-{Stealth[length=2.5mm]},very thick,#3] (#1,#2)--++(-1.2,0);}
+\newcommand{\cuatroautos}[8]{%
+\begin{center}\begin{tikzpicture}[scale=.9]
+\foreach \y in {0,1.05,2.1,3.15}{\draw[gray!50] (.2,\y)--(10.4,\y);}
+\vehiculo{1}{3.25}{blue}{A}{#1}\vehiculo{6.2}{2.2}{orange}{B}{#3}
+\vehiculo{1}{1.15}{green!60!black}{C}{#5}\vehiculo{6.2}{.1}{purple}{D}{#7}
+\csname flecha#2\endcsname{2.45}{3.43}{blue}
+\csname flecha#4\endcsname{6.05}{2.38}{orange}
+\csname flecha#6\endcsname{2.45}{1.33}{green!60!black}
+\csname flecha#8\endcsname{6.05}{.28}{purple}
+\end{tikzpicture}\end{center}}
+\begin{document}
+\begin{center}{\LARGE\bfseries\color{azul} PRÁCTICA DE FÍSICA}\\[3pt]
+{\Large Movimiento relativo en una dimensión}\\[4pt]
+{\color{verde}\bfseries Vehículos, pasajeros y observadores}\end{center}
+\begin{tcolorbox}[colback=blue!3,colframe=azul,arc=2mm]
+\textbf{Estudiante:}\ \hrulefill\\[8pt]
+\textbf{Sección:}\ \underline{\hspace{3cm}}\hfill\textbf{Fecha:}\ \underline{\hspace{3.5cm}}
+\end{tcolorbox}
+\begin{bloque}{Indicaciones}
+Resuelva cada apartado mostrando datos, sustitución y cálculo. Use \textbf{positivo hacia el este o la derecha} y \textbf{negativo hacia el oeste o la izquierda}. Exprese la velocidad relativa con signo, unidad y sentido. No se incluyen soluciones.
+\end{bloque}
+\section*{I. Interpretación de observadores}
+\begin{problema}{1}
+Un autobús viaja hacia el este a $60\,\mathrm{km/h}$. Una pasajera está sentada y una persona permanece inmóvil en la acera.
+\begin{enumerate}[label=\alph*)]
+\item Indique la velocidad de la pasajera respecto al autobús.
+\item Indique la velocidad de la pasajera respecto al suelo.
+\item Determine la velocidad de la persona de la acera respecto al autobús.
+\item Explique quién observa a la pasajera en reposo.
+\end{enumerate}
+\espacio{3cm}\renglon
+\end{problema}
+\newpage
+\begin{problema}{2}
+Un automóvil A se mueve al este a $45\,\mathrm{km/h}$ y otro B al este a $75\,\mathrm{km/h}$.
+\begin{enumerate}[label=\alph*)]\item Calcule $v_{A/B}$.\item Calcule $v_{B/A}$.\item Indique la rapidez relativa entre ambos.\item Interprete los signos.\end{enumerate}
+\espacio{3cm}\renglon
+\end{problema}
+\clearpage
+\section*{II. Vehículos en movimiento}
+\begin{problema}{3}
+Observe los cuatro vehículos y determine las velocidades relativas solicitadas.
+\cuatroautos{$40\,\mathrm{km/h}$}{D}{$50\,\mathrm{km/h}$}{I}{$30\,\mathrm{km/h}$}{D}{$35\,\mathrm{km/h}$}{D}
+\begin{enumerate}[label=\alph*)]
+\item $v_{A/B}$ \qquad \item $v_{A/C}$ \qquad \item $v_{D/B}$
+\item $v_{B/C}$ \qquad \item $v_{C/D}$ \qquad \item $v_{B/A}$
+\end{enumerate}
+\espacio{4cm}\renglon
+\end{problema}
+\newpage
+\begin{problema}{4}
+Para los vehículos del siguiente esquema, calcule cada velocidad relativa e indique su sentido.
+\cuatroautos{$70\,\mathrm{km/h}$}{D}{$45\,\mathrm{km/h}$}{D}{$35\,\mathrm{km/h}$}{I}{$60\,\mathrm{km/h}$}{I}
+\begin{enumerate}[label=\alph*)]
+\item $v_{A/B}$ \qquad \item $v_{C/D}$ \qquad \item $v_{D/A}$
+\item $v_{B/C}$ \qquad \item $v_{A/D}$ \qquad \item $v_{C/B}$
+\end{enumerate}
+\espacio{4cm}\renglon
+\end{problema}
+\clearpage
+\begin{problema}{5}
+Considere el siguiente conjunto de vehículos.
+\cuatroautos{$25\,\mathrm{km/h}$}{I}{$55\,\mathrm{km/h}$}{I}{$80\,\mathrm{km/h}$}{D}{$20\,\mathrm{km/h}$}{D}
+\begin{enumerate}[label=\alph*)]
+\item $v_{A/C}$ \qquad \item $v_{B/A}$ \qquad \item $v_{C/D}$
+\item $v_{D/B}$ \qquad \item $v_{A/D}$ \qquad \item $v_{C/B}$
+\end{enumerate}
+\espacio{4cm}\renglon
+\end{problema}
+\newpage
+\begin{problema}{6}
+Dos motocicletas se aproximan una a la otra. La motocicleta A se mueve hacia el este a $54\,\mathrm{km/h}$ y la motocicleta B hacia el oeste a $72\,\mathrm{km/h}$.
+\begin{enumerate}[label=\alph*)]
+\item Determine $v_{A/B}$ y $v_{B/A}$.
+\item Determine la rapidez relativa.
+\item Si la separación inicial es $630\,\mathrm{m}$ y mantienen velocidades constantes, determine el tiempo hasta encontrarse.
+\end{enumerate}
+\espacio{4.5cm}\renglon
+\end{problema}
+\clearpage
+\section*{III. Personas dentro y fuera de un autobús}
+\begin{problema}{7}
+Un autobús avanza al este a $72\,\mathrm{km/h}$. Marta camina hacia adelante a $4\,\mathrm{km/h}$ respecto al autobús; Pedro camina hacia atrás a $3\,\mathrm{km/h}$ respecto al autobús; Sara permanece sentada.
+\begin{center}\begin{tikzpicture}[scale=.85]
+\draw[rounded corners=5pt,fill=blue!8,draw=azul,very thick] (0,0) rectangle (10,2.15);
+\foreach \x in {1,3,5,7}{\draw[fill=white] (\x,1.25) rectangle ++(1.3,.65);}
+\foreach \x in {1.6,8.4}{\fill[black!75] (\x,-.07) circle (.32);}
+\node at (5,.5) {\bfseries AUTOBÚS};
+\draw[-{Stealth},very thick,verde] (10.2,1)--(11.7,1);
+\node[above] at (5,2.3) {$72\,\mathrm{km/h}$ hacia el este};
+\node[font=\scriptsize] at (1.5,1.05) {Marta $+4$};
+\node[font=\scriptsize] at (4,1.05) {Pedro $-3$};
+\node[font=\scriptsize] at (7.8,1.05) {Sara $0$};
+\end{tikzpicture}\end{center}
+\begin{enumerate}[label=\alph*)]
+\item Calcule las velocidades de Marta, Pedro y Sara respecto al suelo.
+\item Determine $v_{M/P}$ y $v_{P/M}$.
+\item ¿Qué velocidad observa Sara para Marta?
+\item ¿Qué velocidad observa Pedro para Sara?
+\item ¿Qué velocidad observa Sara para alguien inmóvil en la acera?
+\end{enumerate}
+\espacio{5cm}\renglon
+\end{problema}
+\clearpage
+\begin{problema}{8}
+Un autobús se mueve hacia el oeste a $50\,\mathrm{km/h}$. Laura camina dentro del autobús hacia el este a $6\,\mathrm{km/h}$ respecto al vehículo. Un ciclista se desplaza por la carretera hacia el oeste a $15\,\mathrm{km/h}$.
+\begin{enumerate}[label=\alph*)]
+\item Determine la velocidad de Laura respecto al suelo.
+\item Determine la velocidad del ciclista respecto al autobús.
+\item Determine la velocidad de Laura respecto al ciclista.
+\item Determine la velocidad del autobús respecto a Laura.
+\end{enumerate}
+\espacio{5cm}\renglon
+\end{problema}
+\begin{problema}{9}
+Un autobús viaja hacia el este a $65\,\mathrm{km/h}$. Una persona camina hacia la parte trasera del autobús a $5\,\mathrm{km/h}$ respecto a este. En la acera, otra persona camina hacia el este a $4\,\mathrm{km/h}$.
+\begin{enumerate}[label=\alph*)]
+\item Determine la velocidad de la persona dentro del autobús respecto al suelo.
+\item Calcule la velocidad de la persona dentro del autobús respecto a quien camina en la acera.
+\item Determine la velocidad de quien camina en la acera respecto al autobús.
+\end{enumerate}
+\espacio{4.5cm}\renglon
+\end{problema}
+\clearpage
+\section*{IV. Trenes, bandas y escaleras mecánicas}
+\begin{problema}{10}
+Un tren se desplaza hacia el este a $24\,\mathrm{m/s}$. Una pasajera camina hacia atrás a $2\,\mathrm{m/s}$ respecto al tren. Un corredor en el andén se mueve al este a $5\,\mathrm{m/s}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcule la velocidad de la pasajera respecto al suelo.
+\item Determine la velocidad de la pasajera respecto al corredor.
+\item Determine la velocidad del corredor respecto al tren.
+\item Calcule la velocidad del tren respecto a la pasajera.
+\end{enumerate}
+\espacio{4.5cm}\renglon
+\end{problema}
+\begin{problema}{11}
+Una banda transportadora se mueve hacia la derecha a $1,5\,\mathrm{m/s}$. Daniel camina sobre ella hacia la derecha a $1,2\,\mathrm{m/s}$ respecto a la banda. Andrea camina sobre la misma banda hacia la izquierda a $0,8\,\mathrm{m/s}$ respecto a la banda.
+\begin{enumerate}[label=\alph*)]
+\item Calcule la velocidad de Daniel respecto al suelo.
+\item Calcule la velocidad de Andrea respecto al suelo.
+\item Determine la velocidad de Daniel respecto a Andrea.
+\item Determine la velocidad de Andrea respecto a Daniel.
+\end{enumerate}
+\espacio{4.5cm}\renglon
+\end{problema}
+\clearpage
+\begin{problema}{12}
+Una escalera mecánica se mueve hacia la derecha a $0,8\,\mathrm{m/s}$. Una persona camina hacia la izquierda a $1,1\,\mathrm{m/s}$ respecto a la escalera. Otra persona permanece de pie sobre ella.
+\begin{enumerate}[label=\alph*)]
+\item Determine la velocidad de cada persona respecto al suelo.
+\item Calcule la velocidad de la primera persona respecto a la segunda.
+\item Indique si la primera persona avanza a la derecha o a la izquierda respecto al suelo.
+\end{enumerate}
+\espacio{5cm}\renglon
+\end{problema}
+\section*{V. Desafíos de aplicación}
+\begin{problema}{13}
+Un autobús viaja al este a $54\,\mathrm{km/h}$. Un estudiante camina dentro del autobús hacia atrás a $1,5\,\mathrm{m/s}$ respecto al vehículo. Una persona está inmóvil en la parada.
+\begin{enumerate}[label=\alph*)]
+\item Convierta la velocidad del autobús a $\mathrm{m/s}$.
+\item Determine la velocidad del estudiante respecto al suelo en $\mathrm{m/s}$.
+\item Determine la velocidad de la persona de la parada respecto al estudiante.
+\item Exprese la rapidez del estudiante respecto al suelo en $\mathrm{km/h}$.
+\end{enumerate}
+\espacio{4cm}\renglon
+\end{problema}
+\clearpage
+\begin{problema}{14}
+Un tren se desplaza al oeste a $18\,\mathrm{m/s}$. Una persona camina hacia el este dentro del tren a $3\,\mathrm{m/s}$ respecto al tren. Un automóvil avanza hacia el oeste a $12\,\mathrm{m/s}$ respecto al suelo.
+\begin{enumerate}[label=\alph*)]
+\item Calcule la velocidad de la persona respecto al suelo.
+\item Calcule la velocidad de la persona respecto al automóvil.
+\item Calcule la velocidad del automóvil respecto al tren.
+\item ¿Con qué velocidad debería caminar la persona respecto al tren para quedar en reposo respecto al suelo?
+\end{enumerate}
+\espacio{5cm}\renglon
+\end{problema}
+\begin{tcolorbox}[colback=orange!5,colframe=naranja,title=\bfseries Revisión final,arc=2mm]
+$\square$ Asigné correctamente los signos.\qquad $\square$ Identifiqué el observador.\\
+$\square$ Conservé las unidades.\qquad $\square$ Interpreté el sentido de cada resultado.
+\end{tcolorbox}
+\end{document}

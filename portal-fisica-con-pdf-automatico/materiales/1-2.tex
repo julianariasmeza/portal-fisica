@@ -1,0 +1,1479 @@
+
+\documentclass[aspectratio=169,11pt]{beamer}
+
+% =========================================
+% PAQUETES
+% =========================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{siunitx}
+
+% TikZ antes de begin document
+\usetikzlibrary{
+ arrows.meta,
+ calc,
+ angles,
+ quotes,
+ positioning,
+ decorations.pathreplacing
+}
+
+\sisetup{
+ output-decimal-marker={,},
+ per-mode=symbol
+}
+
+% =========================================
+% COLORES
+% =========================================
+\definecolor{azul}{RGB}{0,95,175}
+\definecolor{azuloscuro}{RGB}{20,55,100}
+\definecolor{verde}{RGB}{0,145,90}
+\definecolor{rojo}{RGB}{210,45,65}
+\definecolor{naranja}{RGB}{245,100,20}
+\definecolor{morado}{RGB}{115,50,170}
+\definecolor{gris}{RGB}{245,248,252}
+
+% =========================================
+% ESTILO
+% =========================================
+\usetheme{Madrid}
+
+\setbeamercolor{structure}{fg=azuloscuro}
+\setbeamercolor{frametitle}{
+ fg=white,bg=azuloscuro
+}
+\setbeamercolor{block title}{
+ fg=white,bg=azul
+}
+\setbeamercolor{block body}{
+ fg=black,bg=blue!5
+}
+\setbeamercolor{block title example}{
+ fg=white,bg=verde
+}
+\setbeamercolor{block body example}{
+ fg=black,bg=green!5
+}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% =========================================
+% COMANDOS
+% =========================================
+\newcommand{\resp}[1]{
+ \[
+ \boxed{\color{morado}{#1}}
+ \]
+}
+
+\newcommand{\form}[1]{
+ \[
+ \boxed{#1}
+ \]
+}
+
+\tikzset{
+ vector/.style={
+  -{Stealth[length=3mm]},
+  very thick
+ },
+ eje/.style={
+  -{Stealth[length=2mm]},
+  gray
+ }
+}
+
+% =========================================
+% PORTADA
+% =========================================
+\title{Magnitudes escalares y vectoriales}
+\subtitle{
+Representación, operaciones y componentes
+}
+\author{Clases de Matemática Paraíso}
+\date{Física -- Educación Diversificada}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+% =========================================
+% OBJETIVOS
+% =========================================
+\begin{frame}{Objetivos de aprendizaje}
+
+Al finalizar la unidad, el estudiante podrá:
+
+\begin{enumerate}
+\item Diferenciar magnitudes escalares
+y vectoriales.
+
+\item Representar vectores gráficamente.
+
+\item Identificar magnitud, dirección
+y sentido de un vector.
+
+\item Sumar y restar vectores mediante
+métodos gráficos.
+
+\item Resolver vectores perpendiculares.
+
+\item Descomponer vectores en componentes
+rectangulares.
+
+\item Calcular la magnitud y dirección
+de una resultante.
+\end{enumerate}
+
+\end{frame}
+
+% =========================================
+% SECCIÓN 1
+% =========================================
+\section{Magnitudes escalares y vectoriales}
+
+\begin{frame}{Magnitudes físicas}
+
+\begin{block}{Concepto}
+Una magnitud física es una propiedad
+de un cuerpo o fenómeno que puede
+medirse y expresarse mediante un
+valor numérico y una unidad.
+\end{block}
+
+Las magnitudes pueden clasificarse en:
+
+\begin{itemize}
+\item Magnitudes escalares.
+\item Magnitudes vectoriales.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Magnitudes escalares}
+
+\begin{block}{Definición}
+Una magnitud escalar queda
+determinada mediante un valor
+numérico y una unidad.
+\end{block}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|}
+\hline
+Magnitud & Ejemplo\\
+\hline
+Masa & \(5\,\mathrm{kg}\)\\
+\hline
+Tiempo & \(20\,\mathrm{s}\)\\
+\hline
+Temperatura & \(300\,\mathrm{K}\)\\
+\hline
+Distancia & \(150\,\mathrm{m}\)\\
+\hline
+Rapidez & \(12\,\mathrm{m/s}\)\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Magnitudes vectoriales}
+
+\begin{block}{Definición}
+Una magnitud vectorial necesita
+magnitud, dirección y sentido
+para quedar determinada.
+\end{block}
+
+Ejemplos:
+
+\begin{itemize}
+\item Desplazamiento.
+\item Velocidad.
+\item Aceleración.
+\item Fuerza.
+\end{itemize}
+
+\begin{exampleblock}{Ejemplo}
+Una fuerza de \(50\,\mathrm{N}\)
+dirigida hacia el este.
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Diferencia entre escalar y vector}
+
+\begin{columns}
+
+\column{0.5\textwidth}
+
+\begin{block}{Escalar}
+Un automóvil recorre una distancia
+de \(100\,\mathrm{m}\).
+\end{block}
+
+\[
+d=100\,\mathrm{m}
+\]
+
+\column{0.5\textwidth}
+
+\begin{block}{Vector}
+Un automóvil se desplaza
+\(100\,\mathrm{m}\) hacia el este.
+\end{block}
+
+\[
+\vec d=100\,\mathrm{m}
+\text{ hacia el este}
+\]
+
+\end{columns}
+
+\vspace{0.5cm}
+
+\centering
+\begin{tikzpicture}
+\draw[vector,azul] (0,0)--(5,0);
+\node[above] at (2.5,0) {
+ \(100\,\mathrm{m}\)
+};
+\node[right] at (5,0) {Este};
+\end{tikzpicture}
+
+\end{frame}
+
+% =========================================
+% REPRESENTACIÓN
+% =========================================
+\section{Representación de vectores}
+
+\begin{frame}{Elementos de un vector}
+
+Un vector se representa mediante
+una flecha.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+
+\draw[vector,azul]
+(0,0)--(5,2);
+
+\fill (0,0) circle (2pt);
+
+\node[below] at (0,0) {Origen};
+\node[above] at (5,2) {Extremo};
+\node[above] at (2.5,1) {\(\vec A\)};
+
+\draw[dashed] (0,0)--(5,0);
+
+\draw[naranja,thick]
+(1,0) arc[start angle=0,end angle=21.8,
+radius=1];
+
+\node[naranja] at (1.5,0.3) {\(\theta\)};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+\item Magnitud: longitud de la flecha.
+\item Dirección: orientación angular.
+\item Sentido: hacia dónde apunta.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Dirección y sentido}
+
+La dirección puede expresarse
+mediante un ángulo respecto
+a un eje de referencia.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+
+\draw[eje] (-4,0)--(4,0)
+node[right] {\(x\)};
+
+\draw[eje] (0,-2.5)--(0,2.5)
+node[above] {\(y\)};
+
+\draw[vector,azul]
+(0,0)--(3,1.8);
+
+\draw[vector,verde]
+(0,0)--(-3,1.8);
+
+\draw[vector,rojo]
+(0,0)--(-3,-1.8);
+
+\draw[vector,naranja]
+(0,0)--(3,-1.8);
+
+\node[azul] at (3,2.1) {I};
+\node[verde] at (-3,2.1) {II};
+\node[rojo] at (-3,-2.1) {III};
+\node[naranja] at (3,-2.1) {IV};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Vectores iguales y opuestos}
+
+\begin{block}{Vectores iguales}
+Tienen la misma magnitud,
+dirección y sentido.
+\end{block}
+
+\[
+\vec A=\vec B
+\]
+
+\begin{block}{Vectores opuestos}
+Tienen igual magnitud y dirección,
+pero sentidos contrarios.
+\end{block}
+
+\[
+\vec B=-\vec A
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\draw[vector,azul] (0,0)--(3,0);
+\draw[vector,rojo] (7,0)--(4,0);
+
+\node[above] at (1.5,0) {\(\vec A\)};
+\node[above] at (5.5,0) {\(-\vec A\)};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+% =========================================
+% SUMA GRÁFICA
+% =========================================
+\section{Suma gráfica de vectores}
+
+\begin{frame}{Vectores consecutivos}
+
+Dos vectores son consecutivos
+cuando el extremo del primero
+coincide con el origen del segundo.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (3,0);
+\coordinate (B) at (4.3,2);
+
+\draw[vector,azul] (O)--(A);
+\draw[vector,verde] (A)--(B);
+\draw[vector,naranja] (O)--(B);
+
+\node[below] at (0,0) {Inicio};
+\node[above] at (4.3,2) {Final};
+
+\node[below] at (1.5,0) {\(\vec A\)};
+\node[right] at (3.8,1) {\(\vec B\)};
+\node[above] at (2,1.2) {\(\vec R\)};
+
+\end{tikzpicture}
+\end{center}
+
+\form{\vec R=\vec A+\vec B}
+
+\end{frame}
+
+\begin{frame}{Método del triángulo}
+
+\begin{enumerate}
+\item Dibujar el primer vector.
+\item Colocar el segundo desde
+el extremo del primero.
+\item Dibujar la resultante desde
+el origen inicial hasta el extremo final.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (4,0);
+\coordinate (B) at (5,2.5);
+
+\draw[vector,azul] (O)--(A);
+\draw[vector,verde] (A)--(B);
+\draw[vector,naranja] (O)--(B);
+
+\node[below] at (2,0) {\(\vec A\)};
+\node[right] at (4.6,1.3) {\(\vec B\)};
+\node[above] at (2.5,1.3) {\(\vec R\)};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Vectores concurrentes}
+
+\begin{block}{Definición}
+Dos o más vectores son concurrentes
+cuando sus líneas de acción
+pasan por un mismo punto.
+\end{block}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+
+\draw[eje] (-3,0)--(3,0);
+\draw[eje] (0,-2)--(0,2.5);
+
+\draw[vector,azul] (0,0)--(2.5,1.5);
+\draw[vector,verde] (0,0)--(-2,2);
+\draw[vector,rojo] (0,0)--(-2,-1.5);
+
+\node[azul,right] at (2.5,1.5) {\(\vec F_1\)};
+\node[verde,left] at (-2,2) {\(\vec F_2\)};
+\node[rojo,left] at (-2,-1.5) {\(\vec F_3\)};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Método del paralelogramo}
+
+Los vectores se dibujan
+desde un mismo origen.
+
+Se completa el paralelogramo
+y su diagonal representa
+la resultante.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (4,0.5);
+\coordinate (B) at (1.3,2.7);
+\coordinate (C) at (5.3,3.2);
+
+\draw[vector,azul] (O)--(A);
+\draw[vector,verde] (O)--(B);
+
+\draw[dashed,gray,thick] (A)--(C);
+\draw[dashed,gray,thick] (B)--(C);
+
+\draw[vector,naranja] (O)--(C);
+
+\node[below] at (2,0.2) {\(\vec A\)};
+\node[left] at (0.6,1.5) {\(\vec B\)};
+\node[above] at (3,1.8) {\(\vec R\)};
+
+\end{tikzpicture}
+\end{center}
+
+\form{\vec R=\vec A+\vec B}
+
+\end{frame}
+
+\begin{frame}{Resta de vectores}
+
+Restar un vector equivale
+a sumar su vector opuesto.
+
+\form{\vec R=\vec A-\vec B}
+
+También:
+
+\[
+\vec R=\vec A+(-\vec B)
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (4,0);
+\coordinate (B) at (1.5,2);
+\coordinate (N) at (-1.5,-2);
+\coordinate (R) at (2.5,-2);
+
+\draw[vector,azul] (O)--(A);
+\draw[vector,verde] (O)--(B);
+\draw[vector,rojo] (O)--(N);
+
+\draw[vector,rojo,dashed] (A)--(R);
+\draw[vector,naranja] (O)--(R);
+
+\node[above] at (2,0) {\(\vec A\)};
+\node[left] at (0.7,1.2) {\(\vec B\)};
+\node[left] at (-1,-1.1) {\(-\vec B\)};
+\node[right] at (2.5,-1.6) {\(\vec R\)};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+% =========================================
+% VECTORES PERPENDICULARES
+% =========================================
+\section{Vectores perpendiculares}
+
+\begin{frame}{Vectores perpendiculares}
+
+Dos vectores son perpendiculares
+cuando forman un ángulo de
+\(90^\circ\).
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (4,0);
+\coordinate (B) at (4,3);
+
+\draw[vector,azul] (O)--(A);
+\draw[vector,verde] (A)--(B);
+\draw[vector,naranja] (O)--(B);
+
+\draw (3.7,0)--(3.7,0.3)--(4,0.3);
+
+\node[below] at (2,0) {\(A\)};
+\node[right] at (4,1.5) {\(B\)};
+\node[above left] at (2,1.5) {\(R\)};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Fórmulas para vectores perpendiculares}
+
+\begin{block}{Magnitud de la resultante}
+
+Por el teorema de Pitágoras:
+
+\[
+\boxed{R=\sqrt{A^2+B^2}}
+\]
+
+\end{block}
+
+\begin{block}{Dirección}
+
+Si \(A>0\) es horizontal
+y \(B>0\) es vertical:
+
+\[
+\boxed{
+\theta=\tan^{-1}\left(\frac{B}{A}\right)
+}
+\]
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Ejemplo resuelto: vectores perpendiculares}
+
+Dos desplazamientos perpendiculares
+tienen magnitudes de
+\(30\,\mathrm{m}\) y \(40\,\mathrm{m}\).
+
+Determine la magnitud de la resultante.
+
+\textbf{Datos:}
+
+\[
+A=30\,\mathrm{m}
+\qquad
+B=40\,\mathrm{m}
+\]
+
+\textbf{Fórmula:}
+
+\[
+R=\sqrt{A^2+B^2}
+\]
+
+\textbf{Sustitución:}
+
+\[
+R=\sqrt{30^2+40^2}
+\]
+
+\[
+R=\sqrt{900+1600}
+\]
+
+\resp{R=50\,\mathrm{m}}
+
+\end{frame}
+
+\begin{frame}{Ejemplo resuelto: dirección}
+
+Utilizando los datos anteriores:
+
+\[
+A=30\,\mathrm{m}
+\qquad
+B=40\,\mathrm{m}
+\]
+
+\textbf{Fórmula:}
+
+\[
+\theta=\tan^{-1}\left(\frac{B}{A}\right)
+\]
+
+\textbf{Sustitución:}
+
+\[
+\theta=\tan^{-1}\left(\frac{40}{30}\right)
+\]
+
+\resp{\theta\approx53,13^\circ}
+
+La resultante forma un ángulo
+de \(53,13^\circ\) sobre
+la horizontal positiva.
+
+\end{frame}
+
+% =========================================
+% COMPONENTES RECTANGULARES
+% =========================================
+\section{Componentes rectangulares}
+
+\begin{frame}{Descomposición de un vector}
+
+Un vector puede descomponerse
+en dos componentes perpendiculares.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+
+\draw[eje] (-0.3,0)--(5.5,0)
+node[right] {\(x\)};
+
+\draw[eje] (0,-0.3)--(0,3.5)
+node[above] {\(y\)};
+
+\draw[vector,azuloscuro]
+(0,0)--(4,2.8);
+
+\draw[vector,naranja]
+(0,0)--(4,0);
+
+\draw[vector,verde]
+(4,0)--(4,2.8);
+
+\draw[dashed,gray]
+(0,2.8)--(4,2.8);
+
+\draw[naranja,thick]
+(0.9,0) arc[start angle=0,end angle=35,
+radius=0.9];
+
+\node[naranja] at (1.3,0.35) {\(\theta\)};
+\node[below] at (2,0) {\(A_x\)};
+\node[right] at (4,1.4) {\(A_y\)};
+\node[above] at (2,1.7) {\(\vec A\)};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Fórmulas de componentes}
+
+Cuando el ángulo se mide
+desde el eje \(x\) positivo:
+
+\begin{block}{Componente horizontal}
+
+\[
+\boxed{A_x=A\cos\theta}
+\]
+
+\end{block}
+
+\begin{block}{Componente vertical}
+
+\[
+\boxed{A_y=A\sin\theta}
+\]
+
+\end{block}
+
+Los signos dependen del cuadrante
+en el que se encuentra el vector.
+
+\end{frame}
+
+\begin{frame}{Signos de las componentes}
+
+\begin{columns}
+
+\column{0.6\textwidth}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+
+\draw[eje] (-3.5,0)--(3.5,0)
+node[right] {\(x\)};
+
+\draw[eje] (0,-3)--(0,3)
+node[above] {\(y\)};
+
+\draw[vector,azul] (0,0)--(2.3,2);
+\draw[vector,verde] (0,0)--(-2.3,2);
+\draw[vector,naranja] (0,0)--(-2.3,-2);
+\draw[vector,rojo] (0,0)--(2.3,-2);
+
+\node at (2.6,2.4) {\((+,+)\)};
+\node at (-2.6,2.4) {\((-,+)\)};
+\node at (-2.6,-2.4) {\((-,-)\)};
+\node at (2.6,-2.4) {\((+,-)\)};
+
+\end{tikzpicture}
+\end{center}
+
+\column{0.4\textwidth}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|}
+\hline
+Cuadrante & \(A_x\) & \(A_y\)\\
+\hline
+I & \(+\) & \(+\)\\
+II & \(-\) & \(+\)\\
+III & \(-\) & \(-\)\\
+IV & \(+\) & \(-\)\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Ejemplo: componentes rectangulares}
+
+Una fuerza de \(100\,\mathrm{N}\)
+forma un ángulo de \(30^\circ\)
+con el eje \(x\) positivo.
+
+Determine sus componentes.
+
+\textbf{Datos:}
+
+\[
+F=100\,\mathrm{N}
+\qquad
+\theta=30^\circ
+\]
+
+\textbf{Componente horizontal:}
+
+\[
+F_x=F\cos\theta
+\]
+
+\[
+F_x=100\cos30^\circ
+\]
+
+\resp{F_x\approx86,60\,\mathrm{N}}
+
+\end{frame}
+
+\begin{frame}{Ejemplo: componente vertical}
+
+Continuando con el ejemplo:
+
+\[
+F=100\,\mathrm{N}
+\qquad
+\theta=30^\circ
+\]
+
+\textbf{Fórmula:}
+
+\[
+F_y=F\sin\theta
+\]
+
+\textbf{Sustitución:}
+
+\[
+F_y=100\sin30^\circ
+\]
+
+\resp{F_y=50\,\mathrm{N}}
+
+Por lo tanto:
+
+\[
+\vec F=
+(86,60\hat i+50\hat j)\,\mathrm{N}
+\]
+
+\end{frame}
+
+% =========================================
+% SUMA POR COMPONENTES
+% =========================================
+\section{Suma por componentes rectangulares}
+
+\begin{frame}{Método analítico}
+
+Cuando actúan varios vectores,
+podemos calcular la resultante
+mediante sus componentes.
+
+\begin{block}{Componentes resultantes}
+
+\[
+\boxed{R_x=\sum A_x}
+\]
+
+\[
+\boxed{R_y=\sum A_y}
+\]
+
+\end{block}
+
+\begin{block}{Magnitud}
+
+\[
+\boxed{R=\sqrt{R_x^2+R_y^2}}
+\]
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Dirección de la resultante}
+
+La dirección depende de los
+signos de las componentes.
+
+\[
+\theta_{\mathrm{ref}}=
+\tan^{-1}\left|
+\frac{R_y}{R_x}
+\right|
+\]
+
+Este ángulo es el ángulo
+de referencia.
+
+\begin{block}{Ángulo medido desde \(+x\)}
+
+\[
+\theta=
+\begin{cases}
+\theta_{\mathrm{ref}}, & \mathrm{I}\\
+180^\circ-\theta_{\mathrm{ref}}, & \mathrm{II}\\
+180^\circ+\theta_{\mathrm{ref}}, & \mathrm{III}\\
+360^\circ-\theta_{\mathrm{ref}}, & \mathrm{IV}
+\end{cases}
+\]
+
+\end{block}
+
+Si alguna componente es cero,
+la dirección se determina
+directamente sobre el eje.
+
+\end{frame}
+
+% =========================================
+% EJEMPLO 1
+% =========================================
+\begin{frame}{Ejemplo: tres fuerzas concurrentes}
+
+Sobre un cuerpo actúan:
+
+\[
+F_1=100\,\mathrm{N}
+\quad\text{hacia el este}
+\]
+
+\[
+F_2=80\,\mathrm{N}
+\quad\text{hacia el norte}
+\]
+
+\[
+F_3=60\,\mathrm{N}
+\quad\text{hacia el oeste}
+\]
+
+Determine la magnitud y dirección
+de la fuerza resultante.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+
+\draw[eje] (-3.5,0)--(4.5,0);
+\draw[eje] (0,-0.5)--(0,3.5);
+
+\draw[vector,azul] (0,0)--(4,0);
+\draw[vector,verde] (0,0)--(0,3);
+\draw[vector,rojo] (0,0)--(-2.5,0);
+
+\node[below,azul] at (2,0) {\(F_1\)};
+\node[right,verde] at (0,2) {\(F_2\)};
+\node[below,rojo] at (-1.5,0) {\(F_3\)};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Ejemplo: tabla de componentes}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+
+\begin{tabular}{|c|r|r|}
+\hline
+Fuerza & \(F_x\) (N) & \(F_y\) (N)\\
+\hline
+\(F_1\) & 100 & 0\\
+\hline
+\(F_2\) & 0 & 80\\
+\hline
+\(F_3\) & -60 & 0\\
+\hline
+\(\sum\) & 40 & 80\\
+\hline
+\end{tabular}
+\end{center}
+
+\[
+R_x=100+0-60=40\,\mathrm{N}
+\]
+
+\[
+R_y=0+80+0=80\,\mathrm{N}
+\]
+
+\end{frame}
+
+\begin{frame}{Ejemplo: magnitud resultante}
+
+\textbf{Fórmula:}
+
+\[
+R=\sqrt{R_x^2+R_y^2}
+\]
+
+\textbf{Sustitución:}
+
+\[
+R=\sqrt{40^2+80^2}
+\]
+
+\[
+R=\sqrt{1600+6400}
+\]
+
+\[
+R=\sqrt{8000}
+\]
+
+\resp{R\approx89,44\,\mathrm{N}}
+
+\end{frame}
+
+\begin{frame}{Ejemplo: dirección resultante}
+
+\[
+\theta=\tan^{-1}\left(\frac{R_y}{R_x}\right)
+\]
+
+\[
+\theta=\tan^{-1}\left(\frac{80}{40}\right)
+\]
+
+\resp{\theta\approx63,43^\circ}
+
+Como ambas componentes son
+positivas, la resultante se
+encuentra en el primer cuadrante.
+
+\begin{block}{Respuesta}
+\[
+\boxed{
+R\approx89,44\,\mathrm{N}
+}
+\]
+
+Dirección: \(63,43^\circ\)
+sobre el eje \(x\) positivo.
+\end{block}
+
+\end{frame}
+
+% =========================================
+% EJEMPLO 2
+% =========================================
+\begin{frame}{Ejemplo: cuatro fuerzas concurrentes}
+
+Determine la magnitud y dirección
+de la fuerza resultante.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+
+\draw[eje] (-4,0)--(4.5,0)
+node[right] {\(x\)};
+
+\draw[eje] (0,-2.8)--(0,3.3)
+node[above] {\(y\)};
+
+\draw[vector,azul] (0,0)--(3.3,0);
+\draw[vector,verde] (0,0)--(2.7,2.27);
+\draw[vector,morado] (0,0)--(-2.8,1.75);
+\draw[vector,rojo] (0,0)--(0,-2.4);
+
+\node[below,azul] at (2.2,0) {\(F_1=100\,N\)};
+\node[above,verde] at (2.6,2.3) {\(F_2=200\,N\)};
+\node[above,morado] at (-2.8,1.8) {\(F_3=100\,N\)};
+\node[right,rojo] at (0,-2.1) {\(F_4=40\,N\)};
+
+\draw[naranja,thick]
+(0.65,0) arc[start angle=0,end angle=40,
+radius=0.65];
+
+\node[naranja] at (1.1,0.35) {\(40^\circ\)};
+
+\draw[naranja,thick]
+(-0.75,0) arc[start angle=180,end angle=148,
+radius=0.75];
+
+\node[naranja] at (-1.25,0.3) {\(32^\circ\)};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Ejemplo: datos y componentes}
+
+\small
+
+\[
+F_1=100\,N,\quad \theta_1=0^\circ
+\]
+
+\[
+F_2=200\,N,\quad \theta_2=40^\circ
+\]
+
+\[
+F_3=100\,N,\quad \theta_3=148^\circ
+\]
+
+\[
+F_4=40\,N,\quad \theta_4=270^\circ
+\]
+
+\begin{block}{Fórmulas}
+
+\[
+F_x=F\cos\theta
+\qquad
+F_y=F\sin\theta
+\]
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Ejemplo: cálculo de componentes}
+
+\small
+
+\textbf{Primera fuerza:}
+\[
+F_{1x}=100\cos0^\circ=100\,N
+\]
+\[
+F_{1y}=100\sin0^\circ=0\,N
+\]
+\textbf{Segunda fuerza:}
+\[
+F_{2x}=200\cos40^\circ
+\approx153,21\,N
+\]
+\[
+F_{2y}=200\sin40^\circ
+\approx128,56\,N
+\]
+\textbf{Tercera fuerza:}
+\[
+F_{3x}=100\cos148^\circ
+\approx-84,80\,N
+\]
+\[
+F_{3y}=100\sin148^\circ
+\approx52,99\,N
+\]
+\textbf{Cuarta fuerza:}
+\[
+F_{4x}=0\,N,\qquad F_{4y}=-40\,N
+\]
+
+\end{frame}
+
+\begin{frame}{Ejemplo: tabla de componentes}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+
+\begin{tabular}{|c|r|r|}
+\hline
+Vector & \(F_x\) (N) & \(F_y\) (N)\\
+\hline
+\(F_1\) & 100,00 & 0,00\\
+\hline
+\(F_2\) & 153,21 & 128,56\\
+\hline
+\(F_3\) & -84,80 & 52,99\\
+\hline
+\(F_4\) & 0,00 & -40,00\\
+\hline
+\(\sum\) & 168,41 & 141,55\\
+\hline
+\end{tabular}
+\end{center}
+
+\[
+R_x\approx168,41\,N
+\]
+
+\[
+R_y\approx141,55\,N
+\]
+
+\end{frame}
+
+\begin{frame}{Ejemplo: resultante}
+
+Utilizando las componentes
+sin redondear en los cálculos:
+
+\[
+R=\sqrt{R_x^2+R_y^2}
+\]
+
+\[
+R\approx
+\sqrt{(168,41)^2+(141,55)^2}
+\]
+
+\resp{R\approx219,99\,N}
+
+Dirección:
+
+\[
+\theta=
+\tan^{-1}\left(\frac{R_y}{R_x}\right)
+\]
+
+\[
+\theta\approx
+\tan^{-1}\left(\frac{141,55}{168,41}\right)
+\]
+
+\resp{\theta\approx40,05^\circ}
+
+\end{frame}
+
+\begin{frame}{Interpretación de la resultante}
+
+\begin{block}{Respuesta}
+
+La fuerza resultante tiene
+una magnitud aproximada de:
+
+\[
+\boxed{
+\color{morado}{R\approx219,99\,N}
+}
+\]
+
+Su dirección es:
+
+\[
+\boxed{
+\color{morado}{\theta\approx40,05^\circ}
+}
+\]
+
+Se encuentra en el primer cuadrante,
+medida desde el eje \(x\) positivo.
+
+\end{block}
+
+\end{frame}
+
+% =========================================
+% PRÁCTICAS
+% =========================================
+\section{Práctica}
+
+\begin{frame}{Práctica 1: clasificación}
+
+Clasifique las siguientes magnitudes
+como escalares o vectoriales.
+
+\begin{enumerate}
+\item Masa de \(15\,\mathrm{kg}\).
+\item Fuerza de \(80\,\mathrm{N}\)
+hacia el norte.
+\item Tiempo de \(25\,\mathrm{s}\).
+\item Velocidad de \(12\,\mathrm{m/s}\)
+hacia el este.
+\item Distancia de \(200\,\mathrm{m}\).
+\item Aceleración de
+\(3\,\mathrm{m/s^2}\) hacia abajo.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Práctica 2: vectores perpendiculares}
+
+Dos desplazamientos perpendiculares
+tienen magnitudes de
+\(12\,\mathrm{m}\) y \(16\,\mathrm{m}\).
+
+Determine:
+
+\begin{enumerate}
+\item La magnitud de la resultante.
+\item El ángulo respecto al
+desplazamiento horizontal.
+\item La representación gráfica
+de ambos vectores.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Práctica 3: componentes}
+
+Una fuerza de \(150\,\mathrm{N}\)
+forma un ángulo de \(35^\circ\)
+con el eje horizontal positivo.
+
+Determine:
+
+\begin{enumerate}
+\item La componente horizontal.
+\item La componente vertical.
+\item El cuadrante correspondiente.
+\item La representación gráfica
+del vector y sus componentes.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Práctica 4: segundo cuadrante}
+
+Una fuerza de \(120\,\mathrm{N}\)
+forma un ángulo de \(140^\circ\)
+medido desde el eje \(x\) positivo.
+
+Determine:
+
+\begin{enumerate}
+\item La componente horizontal.
+\item La componente vertical.
+\item Los signos de las componentes.
+\item La representación gráfica.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Práctica 5: fuerzas concurrentes}
+
+Sobre un cuerpo actúan:
+
+\[
+F_1=80\,N
+\quad\text{hacia el este}
+\]
+
+\[
+F_2=60\,N
+\quad\text{hacia el norte}
+\]
+
+\[
+F_3=30\,N
+\quad\text{hacia el oeste}
+\]
+
+Determine:
+
+\begin{enumerate}
+\item Las componentes resultantes.
+\item La magnitud de la resultante.
+\item La dirección.
+\item El cuadrante.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Práctica 6: cuatro fuerzas}
+
+Sobre un punto actúan cuatro fuerzas:
+
+\[
+F_1=120\,N,\quad 0^\circ
+\]
+
+\[
+F_2=90\,N,\quad 60^\circ
+\]
+
+\[
+F_3=70\,N,\quad 150^\circ
+\]
+
+\[
+F_4=50\,N,\quad 270^\circ
+\]
+
+Determine:
+
+\begin{enumerate}
+\item Las componentes de cada fuerza.
+\item La suma de componentes.
+\item La magnitud de la resultante.
+\item Su dirección y cuadrante.
+\end{enumerate}
+
+\end{frame}
+
+% =========================================
+% FORMULARIO
+% =========================================
+\section{Resumen}
+
+\begin{frame}{Formulario: vectores}
+
+\small
+
+\begin{columns}
+
+\column{0.5\textwidth}
+
+\textbf{Componentes}
+
+\[
+A_x=A\cos\theta
+\]
+
+\[
+A_y=A\sin\theta
+\]
+
+\textbf{Resultantes}
+
+\[
+R_x=\sum A_x
+\]
+
+\[
+R_y=\sum A_y
+\]
+
+\column{0.5\textwidth}
+
+\textbf{Magnitud}
+
+\[
+R=\sqrt{R_x^2+R_y^2}
+\]
+
+\textbf{Ángulo de referencia}
+
+\[
+\theta_{\mathrm{ref}}=
+\tan^{-1}\left|
+\frac{R_y}{R_x}
+\right|
+\]
+
+\textbf{Resta}
+
+\[
+\vec A-\vec B=\vec A+(-\vec B)
+\]
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Recomendaciones para resolver problemas}
+
+\begin{enumerate}
+\item Leer cuidadosamente el enunciado.
+\item Identificar las magnitudes.
+\item Dibujar los vectores.
+\item Establecer los ejes de referencia.
+\item Determinar los ángulos.
+\item Calcular las componentes.
+\item Sumar las componentes.
+\item Calcular magnitud y dirección.
+\item Interpretar el resultado físico.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+
+\centering
+
+{\Huge\color{azuloscuro}
+Vectores
+}
+
+\vspace{0.5cm}
+
+{\Large
+Fin de la primera unidad
+}
+
+\vspace{0.6cm}
+
+\textbf{Clases de Matemática Paraíso}
+
+\end{frame}
+
+\end{document}

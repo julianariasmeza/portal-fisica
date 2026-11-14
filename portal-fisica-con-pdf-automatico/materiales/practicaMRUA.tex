@@ -1,0 +1,50 @@
+
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern,amsmath,amssymb,geometry,xcolor,tikz,tcolorbox,fancyhdr,enumitem,lastpage,multicol}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\tcbuselibrary{breakable,skins}
+\geometry{margin=1.9cm,top=2.3cm,bottom=2.1cm}
+\definecolor{azul}{RGB}{16,70,125}\definecolor{morado}{RGB}{112,53,157}\definecolor{verde}{RGB}{0,130,96}\definecolor{celeste}{RGB}{237,246,252}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}\lhead{\color{azul}\bfseries Física -- Educación Diversificada}\rhead{\color{azul}J. Arias}\cfoot{Página \thepage\ de \pageref{LastPage}}
+\newtcolorbox{tema}[1]{enhanced,breakable,colback=celeste,colframe=azul,arc=2mm,title={\bfseries #1},colbacktitle=azul,coltitle=white}
+\newtcolorbox{problema}[1]{enhanced,breakable,colback=white,colframe=azul!65,arc=2mm,boxrule=.65pt,title={\bfseries Ejercicio #1},colbacktitle=celeste,coltitle=azul}
+\newcommand{\trabajo}{\par\vspace{.15cm}{\color{morado}\bfseries Procedimiento:}\par\vspace{2.3cm}{\color{morado}\bfseries Respuesta:}\hrulefill\par\vspace{.25cm}}
+\newcommand{\trabajolargo}{\par\vspace{.15cm}{\color{morado}\bfseries Procedimiento:}\par\vspace{3.6cm}{\color{morado}\bfseries Respuesta:}\hrulefill\par\vspace{.3cm}}
+\newcommand{\auto}[2]{\begin{tikzpicture}[baseline=-.5ex,scale=.72,>=Stealth]\draw[gray!65,thick](-.3,0)--(4.5,0);\draw[fill=blue!12,draw=azul,rounded corners=2pt](.4,.12)rectangle(1.8,.65);\fill[black!70](.7,.1)circle(.13) (1.55,.1)circle(.13);\draw[->,very thick,#1](2,.4)--(3.8,.4)node[above,midway]{\scriptsize #2};\end{tikzpicture}}
+\newcommand{\caida}[1]{\begin{tikzpicture}[scale=.7,>=Stealth]\draw[very thick,gray](-.5,0)--(2.6,0);\draw[thick,gray](0,0)--(0,3.8);\filldraw[fill=orange!40,draw=orange!80!black](1.1,3.4)circle(.19);\draw[->,very thick,verde](1.1,2.95)--(1.1,1.75)node[right,midway]{$g$};\draw[<->,morado](-.3,.1)--(-.3,3.4)node[left,midway]{$#1$};\end{tikzpicture}}
+\begin{document}
+\begin{center}{\LARGE\bfseries\color{azul} Práctica de Física}\par\vspace{2mm}{\Large MRUA, caída libre y lanzamiento vertical}\par\smallskip{\color{verde}\bfseries Ejercicios de aplicación -- sin soluciones}\end{center}
+\begin{tcolorbox}[colback=celeste,colframe=azul,arc=2mm]\textbf{Estudiante:}\hrulefill\par\smallskip\textbf{Sección:}\underline{\hspace{3cm}}\hfill\textbf{Fecha:}\underline{\hspace{3cm}}\end{tcolorbox}
+\begin{tema}{Indicaciones}\begin{itemize}[leftmargin=*,nosep]\item Resuelva mostrando datos, fórmula, sustitución, procedimiento y respuesta.\item Use el Sistema Internacional de Unidades y coma decimal.\item Considere $g=9,8\,\mathrm{m/s^2}$ y desprecie la resistencia del aire.\item En cada ejercicio vertical establezca y mantenga su convención de signos.\item No se requieren gráficas de posición, velocidad ni aceleración en función del tiempo.\end{itemize}\end{tema}
+\section*{I. MRUA horizontal: aceleración y velocidad}
+\begin{problema}{1}Un automóvil parte del reposo y acelera uniformemente a $2,5\,\mathrm{m/s^2}$ durante $8\,\mathrm{s}$. Determine su velocidad final y su desplazamiento.\par\centering\auto{verde}{$a>0$}\par\trabajo\end{problema}
+\begin{problema}{2}Una motocicleta aumenta su velocidad de $6\,\mathrm{m/s}$ a $24\,\mathrm{m/s}$ en $9\,\mathrm{s}$. Calcule su aceleración y el desplazamiento durante ese intervalo.\trabajo\end{problema}
+\begin{problema}{3}Un tren viaja a $12\,\mathrm{m/s}$ y acelera uniformemente a $1,8\,\mathrm{m/s^2}$. ¿Qué velocidad alcanza después de recorrer $150\,\mathrm{m}$?\trabajo\end{problema}
+\begin{problema}{4}Un ciclista parte del reposo y recorre $98\,\mathrm{m}$ en $7\,\mathrm{s}$ con aceleración constante. Determine la aceleración y la velocidad final.\trabajo\end{problema}
+\section*{II. Frenado y desaceleración}
+\begin{problema}{5}Un automóvil se desplaza a $30\,\mathrm{m/s}$ y frena con aceleración constante de $-5\,\mathrm{m/s^2}$. Determine el tiempo necesario para detenerse y la distancia recorrida durante el frenado.\par\centering\auto{red}{$v_0>0$}\par\trabajo\end{problema}
+\newpage
+\begin{problema}{6}Un autobús viaja a $72\,\mathrm{km/h}$ y se detiene uniformemente después de recorrer $50\,\mathrm{m}$. Determine su aceleración y el tiempo de frenado.\trabajolargo\end{problema}
+\begin{problema}{7}Un vehículo reduce su velocidad de $25\,\mathrm{m/s}$ a $10\,\mathrm{m/s}$ en $5\,\mathrm{s}$. Calcule la aceleración y el desplazamiento. Indique si el vehículo aumenta o disminuye su rapidez.\trabajo\end{problema}
+\newpage
+\section*{III. Caída libre desde el reposo}
+\begin{problema}{8}\begin{minipage}{.75\linewidth}Se suelta una piedra desde un puente de $78,4\,\mathrm{m}$ de altura. Determine el tiempo de caída y la rapidez inmediatamente antes de llegar al suelo.\end{minipage}\hfill\begin{minipage}{.2\linewidth}\centering\caida{h}\end{minipage}\trabajo\end{problema}
+\begin{problema}{9}Una maceta cae desde el reposo y tarda $3,5\,\mathrm{s}$ en llegar al suelo. Calcule la altura desde la que cayó y su velocidad de impacto, indicando el sentido.\trabajo\end{problema}
+\begin{problema}{10}Se deja caer una esfera desde una torre. ¿Cuánto desciende en los primeros $2\,\mathrm{s}$? ¿Qué distancia adicional recorre entre $t=2\,\mathrm{s}$ y $t=4\,\mathrm{s}$?\trabajolargo\end{problema}
+\section*{IV. Lanzamiento vertical hacia abajo}
+\begin{problema}{11}Desde un balcón se lanza una pelota verticalmente hacia abajo con rapidez inicial de $6\,\mathrm{m/s}$. Determine su velocidad y desplazamiento al cabo de $2,5\,\mathrm{s}$.\trabajo\end{problema}
+\begin{problema}{12}Una piedra se lanza hacia abajo desde una altura de $60\,\mathrm{m}$ con rapidez inicial de $5\,\mathrm{m/s}$. Calcule el tiempo hasta llegar al suelo y su rapidez de impacto.\trabajolargo\end{problema}
+\section*{V. Lanzamiento vertical hacia arriba}
+\begin{problema}{13}Una pelota se lanza verticalmente hacia arriba desde el suelo con rapidez inicial de $29,4\,\mathrm{m/s}$. Determine el tiempo de subida, la altura máxima y el tiempo total para regresar al punto de lanzamiento.\trabajolargo\end{problema}
+\begin{problema}{14}Se lanza una pelota hacia arriba con rapidez inicial de $24,5\,\mathrm{m/s}$. Determine su velocidad y desplazamiento después de $3\,\mathrm{s}$. Indique si sube o baja en ese instante.\trabajo\end{problema}
+\begin{problema}{15}Un objeto se lanza verticalmente hacia arriba a $19,6\,\mathrm{m/s}$. Determine los instantes en los que se encuentra a $14,7\,\mathrm{m}$ por encima del punto de lanzamiento. Explique qué representa cada instante.\trabajolargo\end{problema}
+\section*{VI. Problemas combinados}
+\begin{problema}{16}Desde una terraza de $20\,\mathrm{m}$ de altura se lanza una pelota verticalmente hacia arriba con rapidez inicial de $14\,\mathrm{m/s}$. Determine la altura máxima respecto al suelo, el tiempo total hasta impactar y la rapidez de impacto.\trabajolargo\end{problema}
+\begin{problema}{17}Desde la azotea de un edificio de $45\,\mathrm{m}$ se deja caer una pelota. Simultáneamente, desde el suelo se lanza otra pelota verticalmente hacia arriba con rapidez inicial de $20\,\mathrm{m/s}$. Determine si se encuentran antes de tocar el suelo y, en caso afirmativo, el instante y la altura del encuentro.\trabajolargo\end{problema}
+\begin{problema}{18}Un automóvil parte del reposo y acelera a $2\,\mathrm{m/s^2}$ durante $10\,\mathrm{s}$. Luego mantiene la velocidad alcanzada durante $15\,\mathrm{s}$ y finalmente frena uniformemente hasta detenerse en $5\,\mathrm{s}$. Determine la distancia total recorrida y la aceleración en la última etapa.\trabajolargo\end{problema}
+\begin{tema}{Autoevaluación}\begin{tabular}{p{12cm}c}Identifiqué correctamente los datos y las unidades.&$\square$\\Elegí la ecuación apropiada para cada ejercicio.&$\square$\\Respeté los signos de velocidad, aceleración y desplazamiento.&$\square$\\Interpreté físicamente los resultados.&$\square$\end{tabular}\end{tema}
+\end{document}
