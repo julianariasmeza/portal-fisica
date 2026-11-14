@@ -29,6 +29,7 @@ jobs:
             texlive-pictures \
             texlive-lang-spanish \
             texlive-fonts-recommended \
+              texlive-science \
             latexmk
 
       - name: Compilar documentos
