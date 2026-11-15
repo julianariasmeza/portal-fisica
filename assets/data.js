@@ -1,4 +1,3 @@
-
 window.PORTAL = {
   modules: [
     {
@@ -105,9 +104,9 @@ window.PORTAL = {
         title: 'Pasajero dentro de un autobús',
         statement: 'Un autobús se mueve al este a 60 km/h. Un pasajero camina hacia atrás a 5 km/h respecto al autobús. ¿Cuál es su velocidad respecto al suelo?',
         steps: [
-          'Datos: v₍bus/suelo₎ = +60 km/h; v₍pasajero/bus₎ = −5 km/h.',
-          'v₍pasajero/suelo₎ = v₍pasajero/bus₎ + v₍bus/suelo₎.',
-          'v₍pasajero/suelo₎ = −5 + 60 = +55 km/h.'
+          'Datos: v(bus/suelo) = +60 km/h; v(pasajero/bus) = −5 km/h.',
+          'v(pasajero/suelo) = v(pasajero/bus) + v(bus/suelo).',
+          'v(pasajero/suelo) = −5 + 60 = +55 km/h.'
         ],
         answer: '55 km/h hacia el este respecto al suelo.'
       },
@@ -125,10 +124,10 @@ window.PORTAL = {
           why: '80 − 50 = +30 km/h.'
         },
         {
-          q: 'Un autobús va a +60 km/h y una persona camina hacia atrás a −5 km/h respecto a él. Respecto al suelo va a:',
-          options: ['+55 km/h', '−65 km/h', '+65 km/h', '−55 km/h'],
+          q: 'Un tren va a +90 km/h y una persona camina hacia atrás a −6 km/h respecto a él. Respecto al suelo va a:',
+          options: ['+84 km/h', '−96 km/h', '+96 km/h', '−84 km/h'],
           correct: 0,
-          why: '−5 + 60 = +55 km/h.'
+          why: '−6 + 90 = +84 km/h.'
         }
       ]
     },
