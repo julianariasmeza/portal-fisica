@@ -1,0 +1,281 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern,amsmath,amssymb,geometry,xcolor,tikz,enumitem,fancyhdr}
+\usetikzlibrary{arrows.meta,calc}
+\geometry{margin=1.8cm,top=2cm,bottom=1.5cm}
+\definecolor{azul}{RGB}{27,62,105}
+\definecolor{morado}{RGB}{112,48,160}
+\definecolor{verde}{RGB}{22,120,75}
+
+% ---- Cambie a \clavetrue para generar la versión con respuestas (docente) ----
+\newif\ifclave \clavefalse
+
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small Física -- Educación Diversificada}
+\rhead{\small Práctica: Dinámica\ifclave\ \textcolor{red}{(CLAVE)}\fi}
+\cfoot{\small\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0pt}
+\setlength{\fboxsep}{4pt}
+
+\tikzset{
+  bloque/.style={draw=azul,thick,fill=azul!10,rounded corners=1pt},
+  flecha/.style={-{Stealth[length=2.6mm]},thick},
+  suelo/.style={line width=1.6pt,gray!65},
+  mesa/.style={draw=gray!70,thick,fill=gray!15},
+  plano/.style={draw=gray!70,thick,fill=gray!12},
+  cuerda/.style={line width=1pt,black!80},
+  polea/.style={draw=black!70,thick,fill=gray!20}}
+
+% Ejercicio: título con color
+\newcommand{\ejercicio}[2]{\subsection*{\color{azul}Ejercicio #1. #2}}
+
+% Figura (izquierda) + recuadro de diagrama de cuerpo libre (derecha)
+\newcommand{\altofig}{3.6cm}
+\newenvironment{figdcl}{\par\smallskip\noindent\begin{minipage}[c][\altofig][c]{.52\linewidth}\centering}
+{\end{minipage}\hfill
+ \fbox{\parbox[t][\dimexpr\altofig-2\fboxsep\relax][t]{\dimexpr.45\linewidth-2\fboxsep-2\fboxrule\relax}%
+ {\small\textbf{\color{azul}Diagrama de cuerpo libre}}}\par}
+
+% Recuadro de respuesta (con la solución si \clavetrue)
+\newcommand{\cierre}[1]{\vfill\noindent\fbox{\parbox[t][1.1cm][t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+ {\textbf{\color{azul}Respuesta:}\ \ifclave\textcolor{verde}{\small #1}\fi}}\par}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries\color{azul} Práctica de Dinámica}\par\vspace{0mm}
+{\large Aplicación de la segunda ley de Newton}\par\vspace{0mm}
+\textcolor{morado}{\rule{0.9\linewidth}{1pt}}
+\end{center}
+\textbf{Nombre:}\ \rule{9cm}{0.4pt}\hfill \textbf{Fecha:}\ \rule{2.5cm}{0.4pt}
+
+\smallskip
+\textbf{Indicaciones:} Resuelva cada ejercicio con el procedimiento \textbf{Datos, Fórmulas, Sustitución, Procedimiento y Respuesta}. Dibuje el diagrama de cuerpo libre, indique el sentido positivo y escriba las unidades del SI. Use $g=9{,}8\ \mathrm{m/s^2}$. Considere ideales las cuerdas y poleas. Cuando haya rozamiento, use fricción cinética.
+
+\smallskip
+\fcolorbox{azul}{azul!5}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\small
+\textbf{Fórmulas útiles:}\quad $\Sigma F=ma$\quad $P=mg$\quad $f_k=\mu_k N$\quad
+$P_x=mg\,\mathrm{sen}\,\theta$\quad $P_y=mg\cos\theta$\quad $F_x=F\cos\theta$\quad $F_y=F\,\mathrm{sen}\,\theta$}}
+
+\section*{\color{azul}I. Fuerzas horizontales}
+\ejercicio{1}{Bloque sin fricción}
+Un bloque de $18\ \mathrm{kg}$ se encuentra sobre una superficie horizontal sin fricción. Se aplican dos fuerzas horizontales: $F_1=95\ \mathrm{N}$ hacia la derecha y $F_2=23\ \mathrm{N}$ hacia la izquierda. Determine la fuerza resultante, la aceleración y la fuerza normal.
+\begin{figdcl}\begin{tikzpicture}[scale=.9]
+\draw[suelo] (-3,-.6)--(3,-.6);\draw[bloque] (-.8,-.6) rectangle (.8,.5);\node at (0,-.05){$18\ \mathrm{kg}$};
+\draw[flecha,verde] (.8,.05)--(3,.05) node[midway,above]{$F_1=95\ \mathrm{N}$};
+\draw[flecha,red] (-.8,.05)--(-3.0,.05) node[midway,above]{$F_2=23\ \mathrm{N}$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$\Sigma F=72\ \mathrm{N}$ (hacia la derecha);\ $a=4{,}0\ \mathrm{m/s^2}$;\ $N=176{,}4\ \mathrm{N}$}
+
+\ejercicio{2}{Tres fuerzas horizontales}
+Un bloque de $25\ \mathrm{kg}$ recibe tres fuerzas: $F_1=140\ \mathrm{N}$ a la derecha, $F_2=65\ \mathrm{N}$ a la izquierda y $F_3=20\ \mathrm{N}$ a la izquierda. No existe fricción. Determine la aceleración y la normal.
+\begin{figdcl}\begin{tikzpicture}[scale=.9]
+\draw[suelo] (-3.2,-.6)--(3.4,-.6);\draw[bloque] (-.85,-.6) rectangle (.85,.6);\node at (0,0){$25\ \mathrm{kg}$};
+\draw[flecha,verde] (.85,.2)--(3.1,.2) node[midway,above]{$140\ \mathrm{N}$};
+\draw[flecha,red] (-.85,.3)--(-2.9,.3) node[midway,above]{$65\ \mathrm{N}$};
+\draw[flecha,morado] (-.85,-.3)--(-2.3,-.3) node[midway,below]{$20\ \mathrm{N}$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$\Sigma F=55\ \mathrm{N}$;\ $a=2{,}2\ \mathrm{m/s^2}$;\ $N=245\ \mathrm{N}$}
+\clearpage
+
+\section*{\color{azul}II. Fuerzas inclinadas y fricción}
+\ejercicio{3}{Fuerza inclinada sin fricción}
+Un bloque de $16\ \mathrm{kg}$ está sobre una superficie horizontal. Se le aplica una fuerza de $120\ \mathrm{N}$ que forma $35^\circ$ sobre la horizontal hacia la derecha. No hay fricción. Determine $F_x$, $F_y$, la normal y la aceleración.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[suelo] (-2,-.6)--(3.9,-.6);\draw[bloque] (-.8,-.6) rectangle (.8,.55);\node at (0,0){$16\ \mathrm{kg}$};
+\draw[flecha,verde] (.8,.15)--(3.2,1.83) node[above]{$120\ \mathrm{N}$};
+\draw[gray,dashed] (.8,.15)--(3.5,.15);\draw (1.5,.15) arc[start angle=0,end angle=35,radius=.7];\node at (2.0,.45){$35^\circ$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$F_x=98{,}3\ \mathrm{N}$;\ $F_y=68{,}8\ \mathrm{N}$;\ $N=88{,}0\ \mathrm{N}$;\ $a=6{,}14\ \mathrm{m/s^2}$}
+
+\ejercicio{4}{Fuerzas inclinadas y fricción}
+Un bloque de $40\ \mathrm{kg}$ recibe $F_1=80\ \mathrm{N}$ hacia la derecha, $F_2=130\ \mathrm{N}$ a $30^\circ$ sobre la horizontal hacia la derecha y $F_3=10\ \mathrm{N}$ hacia la izquierda. Si $\mu_k=0{,}16$ y el bloque se desliza hacia la derecha, determine la normal, la fricción y la aceleración.
+\begin{figdcl}\begin{tikzpicture}[scale=.75]
+\draw[suelo] (-3.4,-.65)--(4,-.65);\draw[bloque] (-1,-.65) rectangle (1,.55);\node at (0,0){$40\ \mathrm{kg}$};
+\draw[flecha,azul] (1,-.35)--(3.7,-.35) node[below left]{$80\ \mathrm{N}$};
+\draw[flecha,verde] (1,.3)--(3.3,1.63) node[above]{$130\ \mathrm{N}$};
+\draw[flecha,red] (-1,.1)--(-3,.1) node[above right]{$10\ \mathrm{N}$};
+\draw[gray,dashed] (1,.3)--(3.6,.3);\draw (1.75,.3) arc[start angle=0,end angle=30,radius=.75];\node at (2.35,.58){$30^\circ$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$N=327\ \mathrm{N}$;\ $f_k=52{,}3\ \mathrm{N}$;\ $a=3{,}26\ \mathrm{m/s^2}$}
+\clearpage
+
+\ejercicio{5}{Fuerza oblicua hacia abajo}
+Un bloque de $22\ \mathrm{kg}$ se mueve hacia la derecha sobre una superficie horizontal. Se le aplica una fuerza de $160\ \mathrm{N}$ dirigida $25^\circ$ por debajo de la horizontal, hacia la derecha. El coeficiente de fricción cinética es $0{,}20$. Determine la normal, la fricción y la aceleración.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[suelo] (-3.4,-.8)--(2.2,-.8);\draw[bloque] (-.8,-.8) rectangle (.8,.5);\node at (0,-.15){$22\ \mathrm{kg}$};
+\draw[flecha,verde] (-3.2,1.42)--(-.8,.3) node[pos=0,above]{$160\ \mathrm{N}$};
+\draw[gray,dashed] (-.8,.3)--(-3.2,.3);
+\draw (-.8,.3)+(155:1) arc[start angle=155,end angle=180,radius=1];\node at (-2.3,.02){$25^\circ$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$N=283\ \mathrm{N}$;\ $f_k=56{,}6\ \mathrm{N}$;\ $a=4{,}02\ \mathrm{m/s^2}$}
+
+\section*{\color{azul}III. Planos inclinados}
+\ejercicio{6}{Plano inclinado sin fricción}
+Un bloque de $12\ \mathrm{kg}$ se encuentra en un plano inclinado de $25^\circ$, sin fricción. Una fuerza de $100\ \mathrm{N}$ actúa paralela al plano y hacia arriba. Tome como positivo el sentido hacia arriba del plano. Determine la componente paralela del peso, la normal, la fuerza resultante y la aceleración.
+\begin{figdcl}\begin{tikzpicture}[scale=.8]
+\draw[plano] (0,0)--({6*cos(25)},0)--({6*cos(25)},{6*sin(25)})--cycle;
+\draw (1.3,0) arc[start angle=0,end angle=25,radius=1.3];\node at ({1.85*cos(12.5)},{1.85*sin(12.5)}){$25^\circ$};
+\begin{scope}[rotate=25]
+\draw[bloque] (1.6,0) rectangle (3.0,.95);\node at (2.3,.47){$12\ \mathrm{kg}$};
+\draw[flecha,verde] (3.0,.47)--(5.2,.47) node[above]{$100\ \mathrm{N}$};
+\end{scope}
+\end{tikzpicture}\end{figdcl}
+\cierre{$P_x=49{,}7\ \mathrm{N}$;\ $N=107\ \mathrm{N}$;\ $\Sigma F=50{,}3\ \mathrm{N}$ (hacia arriba);\ $a=4{,}19\ \mathrm{m/s^2}$}
+\clearpage
+
+\ejercicio{7}{Descenso con fricción}
+Un bloque de $28\ \mathrm{kg}$ se desliza hacia abajo por un plano inclinado de $32^\circ$. El coeficiente de fricción cinética es $0{,}18$. Determine las componentes del peso, la normal, la fricción y la aceleración.
+\begin{figdcl}\begin{tikzpicture}[scale=.8]
+\draw[plano] (0,0)--({6*cos(32)},0)--({6*cos(32)},{6*sin(32)})--cycle;
+\draw (1.3,0) arc[start angle=0,end angle=32,radius=1.3];\node at ({1.85*cos(16)},{1.85*sin(16)}){$32^\circ$};
+\begin{scope}[rotate=32]
+\draw[bloque] (2.6,0) rectangle (4.1,.95);\node at (3.35,.47){$28\ \mathrm{kg}$};
+\draw[flecha,red] (2.6,.47)--(1.0,.47) node[above]{$v$};
+\end{scope}
+\end{tikzpicture}\end{figdcl}
+\cierre{$P_x=145\ \mathrm{N}$;\ $P_y=233\ \mathrm{N}$;\ $N=233\ \mathrm{N}$;\ $f_k=41{,}9\ \mathrm{N}$;\ $a=3{,}70\ \mathrm{m/s^2}$}
+
+\ejercicio{8}{Fuerza aplicada en un plano con fricción}
+Un bloque de $20\ \mathrm{kg}$ asciende por un plano de $30^\circ$ bajo una fuerza de $300\ \mathrm{N}$ paralela al plano y dirigida hacia arriba. El coeficiente de fricción cinética es $0{,}17$. Determine la normal, la fricción y la aceleración.
+\begin{figdcl}\begin{tikzpicture}[scale=.8]
+\draw[plano] (0,0)--({6*cos(30)},0)--({6*cos(30)},{6*sin(30)})--cycle;
+\draw (1.3,0) arc[start angle=0,end angle=30,radius=1.3];\node at ({1.85*cos(15)},{1.85*sin(15)}){$30^\circ$};
+\begin{scope}[rotate=30]
+\draw[bloque] (1.6,0) rectangle (3.1,.95);\node at (2.35,.47){$20\ \mathrm{kg}$};
+\draw[flecha,verde] (3.1,.47)--(5.3,.47) node[above]{$300\ \mathrm{N}$};
+\end{scope}
+\end{tikzpicture}\end{figdcl}
+\cierre{$N=170\ \mathrm{N}$;\ $f_k=28{,}9\ \mathrm{N}$;\ $a=8{,}66\ \mathrm{m/s^2}$}
+\clearpage
+
+\section*{\color{azul}IV. Sistemas de poleas}
+\ejercicio{9}{Máquina de Atwood}
+Dos masas de $12\ \mathrm{kg}$ y $10\ \mathrm{kg}$ cuelgan de una polea ideal. Determine la aceleración del sistema, la tensión de la cuerda y el sentido del movimiento de cada masa. Compruebe la tensión usando las ecuaciones de ambas masas.
+\begin{figdcl}\begin{tikzpicture}[scale=.75]
+\draw[thick] (-1.5,3.3)--(1.5,3.3);\draw[thick] (0,3.3)--(0,2.9);
+\draw[polea] (0,2.2) circle (.7);\fill (0,2.2) circle (.05);
+\draw[cuerda] (-.7,2.2)--(-.7,-.4);\draw[cuerda] (.7,2.2)--(.7,.2);
+\draw[bloque] (-1.3,-1.4) rectangle (-.1,-.4);\node at (-.7,-.9){$12\ \mathrm{kg}$};
+\draw[bloque,fill=green!12] (.1,-.8) rectangle (1.3,.2);\node at (.7,-.3){$10\ \mathrm{kg}$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$a=0{,}891\ \mathrm{m/s^2}$;\ $T=107\ \mathrm{N}$;\ la masa de $12\ \mathrm{kg}$ desciende y la de $10\ \mathrm{kg}$ asciende}
+
+\ejercicio{10}{Masa horizontal y masa colgante, sin fricción}
+Un bloque de $10\ \mathrm{kg}$ está sobre una mesa horizontal sin fricción y conectado por una cuerda ideal a una masa colgante de $15\ \mathrm{kg}$. Determine la aceleración y la tensión.
+\begin{figdcl}\begin{tikzpicture}[scale=.95]
+\draw[mesa] (-3,-.5) rectangle (1.6,0);
+\draw[bloque] (-2,0) rectangle (-.8,.85);\node at (-1.4,.43){$10\ \mathrm{kg}$};
+\draw[polea] (1.75,.35) circle (.3);\fill (1.75,.35) circle (.03);
+\draw[cuerda] (-.8,.65)--(1.75,.65);\draw[cuerda] (2.05,.35)--(2.05,-1.1);
+\draw[bloque,fill=green!12] (1.6,-1.9) rectangle (2.5,-1.1);\node at (2.05,-1.5){$15\ \mathrm{kg}$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$a=5{,}88\ \mathrm{m/s^2}$;\ $T=58{,}8\ \mathrm{N}$}
+\clearpage
+
+\ejercicio{11}{Masa horizontal y masa colgante con fricción}
+Un bloque de $20\ \mathrm{kg}$ está sobre una superficie horizontal con $\mu_k=0{,}11$. Está conectado mediante una cuerda ideal a una masa colgante de $33\ \mathrm{kg}$. Si la masa colgante desciende, determine la fuerza de fricción, la aceleración y la tensión. Verifique la tensión usando ambos cuerpos.
+\begin{figdcl}\begin{tikzpicture}[scale=.95]
+\draw[mesa] (-3,-.5) rectangle (1.6,0);
+\draw[bloque] (-2,0) rectangle (-.8,.85);\node at (-1.4,.43){$20\ \mathrm{kg}$};
+\draw[polea] (1.75,.35) circle (.3);\fill (1.75,.35) circle (.03);
+\draw[cuerda] (-.8,.65)--(1.75,.65);\draw[cuerda] (2.05,.35)--(2.05,-1.1);
+\draw[bloque,fill=green!12] (1.6,-1.9) rectangle (2.5,-1.1);\node at (2.05,-1.5){$33\ \mathrm{kg}$};
+\draw[flecha,morado] (-2,.2)--(-2.9,.2) node[above right]{$f_k$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$f_k=21{,}6\ \mathrm{N}$;\ $a=5{,}70\ \mathrm{m/s^2}$;\ $T=135{,}5\ \mathrm{N}$}
+
+\ejercicio{12}{Cálculo del coeficiente de fricción}
+Un bloque de $20\ \mathrm{kg}$ se encuentra sobre una superficie horizontal y está conectado a una masa colgante de $15\ \mathrm{kg}$. El sistema se mueve con una aceleración de $3\ \mathrm{m/s^2}$, con la masa colgante descendiendo. Determine la fricción cinética, el coeficiente de fricción cinética y la tensión de la cuerda.
+\begin{figdcl}\begin{tikzpicture}[scale=.95]
+\draw[mesa] (-3,-.5) rectangle (1.6,0);
+\draw[bloque] (-2,0) rectangle (-.8,.85);\node at (-1.4,.43){$20\ \mathrm{kg}$};
+\draw[polea] (1.75,.35) circle (.3);\fill (1.75,.35) circle (.03);
+\draw[cuerda] (-.8,.65)--(1.75,.65);\draw[cuerda] (2.05,.35)--(2.05,-1.1);
+\draw[bloque,fill=green!12] (1.6,-1.9) rectangle (2.5,-1.1);\node at (2.05,-1.5){$15\ \mathrm{kg}$};
+\draw[flecha,morado] (-2,.2)--(-2.9,.2) node[above right]{$f_k$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$T=102\ \mathrm{N}$;\ $f_k=42\ \mathrm{N}$;\ $\mu_k=0{,}214$}
+
+\clearpage
+\section*{\color{azul}V. Aplicaciones básicas de las leyes de Newton}
+\noindent\textit{En los ejercicios 13--20, realice el diagrama de cuerpo libre y justifique el sentido de cada fuerza.}
+
+\ejercicio{13}{Fuerza necesaria para acelerar un carrito}
+Un carrito de supermercado de $30\ \mathrm{kg}$ parte del reposo sobre una superficie horizontal sin fricción. Una persona lo empuja y produce una aceleración de $1{,}5\ \mathrm{m/s^2}$. Calcule la fuerza horizontal aplicada y la fuerza normal.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[suelo] (-2.5,-.7)--(3,-.7);
+\draw[bloque] (-1,-.4) rectangle (.9,.55);\node at (-.05,.08){$30\ \mathrm{kg}$};
+\foreach \x in {-0.65,0.55}{\draw[fill=gray!40] (\x,-.57) circle (.16);}
+\draw[flecha,verde] (.9,.05)--(2.7,.05) node[above left]{$F$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$F=45\ \mathrm{N}$ hacia la derecha; $N=294\ \mathrm{N}$}
+
+\ejercicio{14}{Determinar la masa de un objeto}
+Una caja sobre una superficie horizontal sin fricción recibe una fuerza neta de $84\ \mathrm{N}$ hacia la derecha y adquiere una aceleración de $3{,}5\ \mathrm{m/s^2}$. Determine su masa y su peso.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[suelo] (-2.5,-.7)--(3,-.7);\draw[bloque] (-.9,-.7) rectangle (.9,.5);\node at (0,-.1){$m=?$};
+\draw[flecha,verde] (.9,-.1)--(2.8,-.1) node[above left]{$84\ \mathrm{N}$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$m=24\ \mathrm{kg}$; $P=235{,}2\ \mathrm{N}$}
+\clearpage
+
+\ejercicio{15}{Peso y normal de una caja en reposo}
+Una caja de $45\ \mathrm{kg}$ permanece en reposo sobre el piso horizontal. Calcule su peso, la fuerza normal y la fuerza resultante. Explique por qué la caja está en equilibrio.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[suelo] (-2,-.8)--(2,-.8);\draw[bloque] (-.85,-.8) rectangle (.85,.5);\node at (0,-.15){$45\ \mathrm{kg}$};
+\draw[flecha,azul] (0,.5)--(0,2) node[above]{$N$};
+\draw[flecha,red] (0,-.15)--(0,-2) node[below]{$P$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$P=441\ \mathrm{N}$ hacia abajo; $N=441\ \mathrm{N}$ hacia arriba; $\Sigma\vec F=\vec 0$}
+
+\ejercicio{16}{Dos personas empujan en sentidos opuestos}
+Dos personas empujan una caja de $20\ \mathrm{kg}$ sobre un piso sin fricción. La primera ejerce $110\ \mathrm{N}$ hacia la derecha y la segunda $70\ \mathrm{N}$ hacia la izquierda. Determine la fuerza neta, la aceleración y la normal.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[suelo] (-3,-.7)--(3,-.7);\draw[bloque] (-.75,-.7) rectangle (.75,.5);\node at (0,-.1){$20\ \mathrm{kg}$};
+\draw[flecha,verde] (.75,.05)--(2.8,.05) node[above left]{$110\ \mathrm{N}$};
+\draw[flecha,red] (-.75,.05)--(-2.8,.05) node[above right]{$70\ \mathrm{N}$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$\Sigma F_x=40\ \mathrm{N}$ hacia la derecha; $a=2\ \mathrm{m/s^2}$; $N=196\ \mathrm{N}$}
+\clearpage
+
+\ejercicio{17}{Elevador que acelera hacia arriba}
+Una persona de $60\ \mathrm{kg}$ está de pie sobre una báscula dentro de un elevador que acelera hacia arriba a $2\ \mathrm{m/s^2}$. Determine su peso y la fuerza normal que registra la báscula.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[thick,gray] (-1.5,2)--(-1.5,-1.2)--(1.5,-1.2)--(1.5,2);
+\draw[bloque] (-.6,-1.2) rectangle (.6,.2);\node at (0,-.5){$60\ \mathrm{kg}$};
+\draw[flecha,verde] (1.8,-.3)--(1.8,1.5) node[above]{$a$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$P=588\ \mathrm{N}$; $N=708\ \mathrm{N}$}
+
+\ejercicio{18}{Elevador que acelera hacia abajo}
+Una persona de $50\ \mathrm{kg}$ se encuentra en un elevador que acelera hacia abajo a $1{,}6\ \mathrm{m/s^2}$. Determine el peso de la persona y la fuerza normal que ejerce el piso.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[thick,gray] (-1.5,2)--(-1.5,-1.2)--(1.5,-1.2)--(1.5,2);
+\draw[bloque] (-.6,-1.2) rectangle (.6,.2);\node at (0,-.5){$50\ \mathrm{kg}$};
+\draw[flecha,red] (1.8,1.3)--(1.8,-.6) node[below]{$a$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$P=490\ \mathrm{N}$; $N=410\ \mathrm{N}$}
+\clearpage
+
+\ejercicio{19}{Fuerza de fricción sobre una caja}
+Una caja de $25\ \mathrm{kg}$ se desliza hacia la derecha sobre un piso horizontal. Se le aplica una fuerza horizontal de $100\ \mathrm{N}$ hacia la derecha. Si el coeficiente de fricción cinética es $\mu_k=0{,}20$, determine la normal, la fricción, la fuerza resultante y la aceleración.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[suelo] (-3,-.7)--(3,-.7);\draw[bloque] (-.8,-.7) rectangle (.8,.5);\node at (0,-.1){$25\ \mathrm{kg}$};
+\draw[flecha,verde] (.8,.2)--(2.9,.2) node[above left]{$100\ \mathrm{N}$};
+\draw[flecha,red] (-.8,-.3)--(-2.7,-.3) node[below right]{$f_k$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$N=245\ \mathrm{N}$; $f_k=49\ \mathrm{N}$; $\Sigma F_x=51\ \mathrm{N}$; $a=2{,}04\ \mathrm{m/s^2}$}
+
+\ejercicio{20}{Frenado por fuerza neta constante}
+Un trineo de $40\ \mathrm{kg}$ se desplaza inicialmente hacia la derecha. Una fuerza neta horizontal de $120\ \mathrm{N}$ actúa hacia la izquierda. Determine su aceleración, incluyendo signo y dirección, y explique qué sucede con su rapidez mientras continúa moviéndose hacia la derecha.
+\begin{figdcl}\begin{tikzpicture}[scale=.85]
+\draw[suelo] (-3,-.7)--(3,-.7);\draw[bloque] (-.9,-.7) rectangle (.9,.4);\node at (0,-.1){$40\ \mathrm{kg}$};
+\draw[flecha,red] (-.9,-.1)--(-2.9,-.1) node[above right]{$120\ \mathrm{N}$};
+\draw[flecha,azul] (.4,.85)--(2.5,.85) node[above left]{$v$};
+\end{tikzpicture}\end{figdcl}
+\cierre{$a=-3\ \mathrm{m/s^2}$ (hacia la izquierda); mientras se mueve a la derecha, disminuye su rapidez}
+
+\end{document}

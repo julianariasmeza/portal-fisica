@@ -1,0 +1,633 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\usetikzlibrary{arrows.meta,calc,positioning,angles,quotes}
+\sisetup{output-decimal-marker={,},per-mode=symbol}
+\definecolor{azul}{RGB}{29,64,109}
+\definecolor{morado}{RGB}{111,45,158}
+\definecolor{verde}{RGB}{24,126,76}
+\definecolor{rojo}{RGB}{185,55,60}
+\definecolor{naranja}{RGB}{216,122,27}
+\usetheme{Madrid}
+\setbeamercolor{structure}{fg=azul}
+\setbeamercolor{frametitle}{bg=azul,fg=white}
+\setbeamercolor{block title}{bg=azul,fg=white}
+\setbeamercolor{block body}{bg=azul!5}
+\setbeamercolor{alerted text}{fg=morado}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setlength{\parskip}{3pt}
+\newcommand{\res}[1]{\begin{center}\setlength{\fboxsep}{8pt}\fcolorbox{morado}{morado!5}{\color{morado}\bfseries\ensuremath{#1}}\end{center}}
+\newcommand{\dato}[1]{\textbf{Datos:} #1}
+\tikzset{force/.style={-{Stealth[length=3mm]},thick},axis/.style={-{Stealth[length=2mm]},gray,dashed},block/.style={draw=azul,fill=azul!12,thick,rounded corners=1pt},ground/.style={line width=2pt,gray!65}}
+\title{Dinámica: leyes de Newton}
+\subtitle{Diagramas de cuerpo libre, fricción, planos inclinados y poleas}
+\author{Julián Arias Meza}
+\institute{Física -- Educación Diversificada}
+\date{}
+\begin{document}
+\begin{frame}\titlepage\end{frame}
+\begin{frame}{Objetivos de aprendizaje}
+\begin{enumerate}
+\item Reconocer las fuerzas que actúan sobre un cuerpo.
+\item Construir diagramas de cuerpo libre (DCL).
+\item Descomponer fuerzas en componentes horizontal y vertical.
+\item Calcular peso, normal y fuerza de fricción.
+\item Aplicar la segunda ley de Newton a bloques y planos inclinados.
+\item Determinar aceleración y tensión en sistemas de poleas.
+\end{enumerate}
+\end{frame}
+\section{Fundamentos}
+\begin{frame}{¿Qué estudia la dinámica?}
+La dinámica relaciona las fuerzas que actúan sobre un cuerpo con los cambios en su movimiento.
+\begin{block}{Fuerza}
+Interacción capaz de cambiar la velocidad de un cuerpo o deformarlo. Es una magnitud vectorial.
+\end{block}
+\[1\ \mathrm{N}=1\ \mathrm{kg\,m/s^2}\]
+\begin{block}{Peso}
+\[P=mg,\qquad g=9{,}8\ \mathrm{m/s^2}\]
+El peso es una fuerza y se expresa en newtons; la masa se expresa en kilogramos.
+\end{block}
+\end{frame}
+\begin{frame}{Las tres leyes de Newton}
+\begin{block}{Primera ley: inercia}
+Si la fuerza resultante es cero, la velocidad permanece constante (incluido el reposo).
+\[\sum\vec F=\vec 0\]
+\end{block}
+\begin{block}{Segunda ley: dinámica}
+\[\boxed{\sum\vec F=m\vec a}\]
+\end{block}
+\begin{block}{Tercera ley: acción y reacción}
+Las fuerzas de interacción entre dos cuerpos tienen igual magnitud y sentidos opuestos, pero actúan sobre cuerpos diferentes.
+\end{block}
+\end{frame}
+\begin{frame}{Segunda ley en dos ejes}
+\[\boxed{\sum F_x=ma_x}\qquad\boxed{\sum F_y=ma_y}\]
+\begin{itemize}
+\item Elegimos el sentido positivo antes de sumar fuerzas.
+\item Una fuerza dirigida en sentido negativo se resta.
+\item Si no hay aceleración vertical: \(\sum F_y=0\).
+\item Si la fuerza resultante es cero, la aceleración es cero.
+\end{itemize}
+\begin{alertblock}{Cuidado}
+La aceleración no es una fuerza y no se dibuja como fuerza en un DCL.
+\end{alertblock}
+\end{frame}
+\begin{frame}{Fuerzas habituales}
+\begin{columns}[T]
+\column{.53\textwidth}
+\begin{itemize}
+\item \textbf{Peso} \(P=mg\): vertical hacia abajo.
+\item \textbf{Normal} \(N\): perpendicular a la superficie.
+\item \textbf{Tensión} \(T\): a lo largo de la cuerda.
+\item \textbf{Fuerza aplicada} \(F\): dirección indicada.
+\item \textbf{Fricción} \(f\): se opone al deslizamiento relativo o a su tendencia.
+\end{itemize}
+\column{.47\textwidth}
+\centering
+\begin{tikzpicture}[scale=.82]
+\draw[ground] (-2,-.65)--(2,-.65);
+\draw[block] (-.75,-.65) rectangle (.75,.45);
+\draw[force,verde] (0,.45)--(0,1.65) node[above] {$\vec N$};
+\draw[force,rojo] (0,-.15)--(0,-1.8) node[below] {$\vec P$};
+\draw[force,azul] (.75,0)--(2,0) node[right] {$\vec F$};
+\draw[force,morado] (-.75,-.35)--(-2,-.35) node[left] {$\vec f$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+\begin{frame}{Cómo elaborar un diagrama de cuerpo libre}
+\begin{enumerate}
+\item Aislar el cuerpo que se estudia.
+\item Elegir ejes coordenados convenientes.
+\item Dibujar únicamente las fuerzas externas sobre ese cuerpo.
+\item Asignar sentidos positivos y negativos.
+\item Descomponer las fuerzas inclinadas cuando corresponda.
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[scale=.7]
+\fill (0,0) circle (2pt);
+\draw[force,verde] (0,0)--(0,1.4) node[above] {$N$};
+\draw[force,rojo] (0,0)--(0,-1.4) node[below] {$P$};
+\draw[force,azul] (0,0)--(1.8,0) node[right] {$F$};
+\draw[force,morado] (0,0)--(-1.8,0) node[left] {$f$};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+\begin{frame}{Descomposición de una fuerza inclinada}
+\begin{columns}
+\column{.53\textwidth}
+Si \(\theta\) se mide desde la horizontal:
+\[\boxed{F_x=F\cos\theta}\]
+\[\boxed{F_y=F\operatorname{sen}\theta}\]
+Los signos se asignan según el sentido real de cada componente.
+\column{.47\textwidth}
+\centering
+\begin{tikzpicture}[scale=.92]
+\draw[axis] (-.2,0)--(3.2,0) node[right] {$x$};
+\draw[axis] (0,-.2)--(0,2.5) node[above] {$y$};
+\draw[force,verde] (0,0)--(2.5,1.75) node[above] {$F$};
+\draw[force,azul] (0,0)--(2.5,0) node[below] {$F_x$};
+\draw[force,naranja] (2.5,0)--(2.5,1.75) node[right] {$F_y$};
+\draw (0.75,0) arc[start angle=0,end angle=35,radius=.75];
+\node at (1.05,.3) {$\theta$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+\section{Bloques horizontales}
+\begin{frame}{Ejemplo 1. Bloque sin fricción: planteamiento}
+Un bloque de \(10\ \mathrm{kg}\) recibe una fuerza horizontal de \(50\ \mathrm{N}\). Determine su aceleración.
+\begin{center}
+\begin{tikzpicture}[scale=.85]
+\draw[ground] (-2,-.55)--(2.6,-.55);
+\draw[block] (-.8,-.55) rectangle (.8,.65);
+\node at (0,.05) {$10\ \mathrm{kg}$};
+\draw[force,azul] (.8,.05)--(2.7,.05) node[right] {$50\ \mathrm{N}$};
+\draw[force,verde] (0,.65)--(0,1.65) node[above] {$N$};
+\draw[force,rojo] (0,-.1)--(0,-1.5) node[below] {$P$};
+\end{tikzpicture}
+\end{center}
+\dato{\(m=10\ \mathrm{kg}\), \(F=50\ \mathrm{N}\), \(f=0\).}
+\end{frame}
+\begin{frame}{Ejemplo 1. Solución}
+\textbf{Fórmula}
+\[\sum F_x=ma\]
+\textbf{Sustitución}
+\[50\ \mathrm{N}=(10\ \mathrm{kg})a\]
+\textbf{Procedimiento}
+\[a=\frac{50\ \mathrm{N}}{10\ \mathrm{kg}}\]
+\textbf{Respuesta}
+\res{a=5\ \mathrm{m/s^2}}
+El bloque acelera hacia la derecha.
+\end{frame}
+\begin{frame}{Fuerza normal en una superficie horizontal}
+Si el bloque permanece apoyado y \(a_y=0\):
+\begin{block}{Sin fuerzas verticales adicionales}
+\[\boxed{N=mg}\]
+\end{block}
+\begin{block}{Una fuerza tira hacia arriba con ángulo \(\theta\)}
+\[\boxed{N=mg-F\operatorname{sen}\theta}\]
+\end{block}
+\begin{block}{Una fuerza empuja hacia abajo con ángulo \(\theta\)}
+\[\boxed{N=mg+F\operatorname{sen}\theta}\]
+\end{block}
+Si \(F\operatorname{sen}\theta\ge mg\), puede perderse el contacto y \(N=0\).
+\end{frame}
+\begin{frame}{Fricción estática y cinética}
+\begin{block}{Fricción estática: antes de deslizar}
+\[\boxed{0\le f_s\le \mu_sN}\]
+La fuerza estática se ajusta hasta un máximo \(f_{s,\max}=\mu_sN\).
+\end{block}
+\begin{block}{Fricción cinética: mientras desliza}
+\[\boxed{f_k=\mu_kN}\]
+\end{block}
+\begin{itemize}
+\item Los coeficientes \(\mu_s\) y \(\mu_k\) no tienen unidades.
+\item En los ejemplos con movimiento se utiliza \(f_k\).
+\end{itemize}
+\end{frame}
+\begin{frame}{Ejemplo 2. Tres fuerzas y fricción: enunciado}
+Un bloque de \(40\ \mathrm{kg}\) se mueve sobre una superficie horizontal. Actúan \(F_1=80\ \mathrm{N}\) a la derecha, \(F_2=130\ \mathrm{N}\) a \(30^\circ\) sobre la horizontal y \(F_3=10\ \mathrm{N}\) a la izquierda. \(\mu_k=0{,}16\).
+\begin{center}
+\begin{tikzpicture}[scale=.72]
+\draw[ground] (-3,-.7)--(4,-.7);
+\draw[block] (-1,-.7) rectangle (1,.55);
+\node at (0,-.08) {$40\ \mathrm{kg}$};
+\draw[force,azul] (1,-.4)--(3.4,-.4) node[right] {$F_1$};
+\draw[force,verde] (1,.35)--(3,1.5) node[right] {$F_2$};
+\draw[force,rojo] (-1,0)--(-2.7,0) node[left] {$F_3$};
+\draw[force,morado] (-1,-.5)--(-2.5,-.5) node[left] {$f_k$};
+\draw (1.75,.35) arc[start angle=0,end angle=30,radius=.75];
+\node at (2.2,.6) {$30^\circ$};
+\end{tikzpicture}
+\end{center}
+Determine la normal, la fricción y la aceleración.
+\end{frame}
+\begin{frame}{Ejemplo 2. Normal}
+\textbf{Datos}
+\[m=40\ \mathrm{kg},\quad F_2=130\ \mathrm{N},\quad \theta=30^\circ\]
+\textbf{Fórmulas}
+\[P=mg,\qquad \sum F_y=0\]
+\[N+F_2\operatorname{sen}\theta-P=0\]
+\textbf{Sustitución y procedimiento}
+\[P=40(9{,}8)=392\ \mathrm{N}\]
+\[N=392-130\operatorname{sen}30^\circ=392-65\]
+\res{N=327\ \mathrm{N}}
+\end{frame}
+\begin{frame}{Ejemplo 2. Fricción}
+\textbf{Datos}
+\[\mu_k=0{,}16,\qquad N=327\ \mathrm{N}\]
+\textbf{Fórmula}
+\[f_k=\mu_kN\]
+\textbf{Sustitución}
+\[f_k=0{,}16(327\ \mathrm{N})\]
+\textbf{Procedimiento}
+\[f_k=52{,}32\ \mathrm{N}\]
+\res{f_k=52{,}32\ \mathrm{N}}
+La fricción actúa hacia la izquierda, opuesta al movimiento.
+\end{frame}
+\begin{frame}{Ejemplo 2. Aceleración}
+\textbf{Fórmula}
+\[\sum F_x=ma\]
+\textbf{Sustitución}
+\[80+130\cos30^\circ-10-52{,}32=40a\]
+\textbf{Procedimiento}
+\[80+112{,}58-10-52{,}32=40a\]
+\[130{,}26=40a\]
+\[a=\frac{130{,}26}{40}\]
+\res{a\approx3{,}26\ \mathrm{m/s^2}}
+\end{frame}
+\section{Planos inclinados}
+\begin{frame}{Plano inclinado: ejes y componentes del peso}
+Elegimos el eje \(x\) paralelo al plano y el eje \(y\) perpendicular al plano.
+\begin{columns}
+\column{.5\textwidth}
+\[\boxed{P_x=mg\operatorname{sen}\theta}\]
+\[\boxed{P_y=mg\cos\theta}\]
+Sin otras fuerzas perpendiculares:
+\[\boxed{N=mg\cos\theta}\]
+\column{.5\textwidth}
+\centering
+\begin{tikzpicture}[scale=.85]
+\begin{scope}[rotate=25]
+\draw[ground] (-2.2,0)--(2.5,0);
+\draw[block] (-.7,0) rectangle (.7,.85);
+\coordinate (C) at (0,.43);
+\draw[force,verde] (C)--++(0,1.35) node[above] {$N$};
+\draw[force,azul] (C)--++(-1.5,0) node[left] {$P_x$};
+\draw[force,morado] (C)--++(0,-1.15) node[right] {$P_y$};
+\end{scope}
+\draw[force,rojo] (-0.2,.39)--(0,-1.5) node[below] {$P$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+\begin{frame}{Plano inclinado: casos frecuentes}
+\begin{block}{Sin fricción ni fuerza aplicada (desciende)}
+\[mg\operatorname{sen}\theta=ma\quad\Rightarrow\quad\boxed{a=g\operatorname{sen}\theta}\]
+\end{block}
+\begin{block}{Deslizamiento hacia abajo con fricción cinética}
+\[mg\operatorname{sen}\theta-f_k=ma\]
+\[\boxed{a=g(\operatorname{sen}\theta-\mu_k\cos\theta)}\]
+\end{block}
+\begin{alertblock}{Atención}
+La fricción apunta hacia arriba del plano si el bloque desliza hacia abajo; cambia de sentido si el bloque desliza hacia arriba.
+\end{alertblock}
+\end{frame}
+\begin{frame}{Ejemplo 3. Fuerza paralela al plano: enunciado}
+Un bloque de \(12\ \mathrm{kg}\) está sobre un plano de \(25^\circ\), sin fricción. Se aplica \(F=100\ \mathrm{N}\) hacia arriba del plano.
+\begin{center}
+\begin{tikzpicture}[scale=.82]
+\begin{scope}[rotate=25]
+\draw[ground] (-2.6,0)--(3.2,0);
+\draw[block] (-.75,0) rectangle (.75,.9);
+\node at (0,.45) {$12\ \mathrm{kg}$};
+\draw[force,verde] (.75,.45)--(2.8,.45) node[above] {$100\ \mathrm{N}$};
+\end{scope}
+\draw[dashed,gray] (-2.4,-1)--(2.8,-1);
+\node at (-0.5,-.75) {$25^\circ$};
+\end{tikzpicture}
+\end{center}
+Calcule \(P_x\), \(N\), fuerza resultante y aceleración.
+\end{frame}
+\begin{frame}{Ejemplo 3. Componente paralela del peso}
+\textbf{Datos}
+\[m=12\ \mathrm{kg},\quad \theta=25^\circ,\quad g=9{,}8\ \mathrm{m/s^2}\]
+\textbf{Fórmula}
+\[P_x=mg\operatorname{sen}\theta\]
+\textbf{Sustitución}
+\[P_x=12(9{,}8)\operatorname{sen}25^\circ\]
+\textbf{Procedimiento}
+\[P_x=117{,}6\operatorname{sen}25^\circ\]
+\res{P_x\approx49{,}70\ \mathrm{N}}
+Esta componente apunta hacia abajo del plano.
+\end{frame}
+\begin{frame}{Ejemplo 3. Fuerza normal}
+\textbf{Fórmula}
+\[\sum F_y=0\quad\Rightarrow\quad N-P_y=0\]
+\[N=mg\cos\theta\]
+\textbf{Sustitución}
+\[N=12(9{,}8)\cos25^\circ\]
+\textbf{Procedimiento}
+\[N=117{,}6\cos25^\circ\]
+\res{N\approx106{,}58\ \mathrm{N}}
+\end{frame}
+\begin{frame}{Ejemplo 3. Resultante y aceleración}
+Positivo: hacia arriba del plano.
+\textbf{Fórmula}
+\[\sum F_x=ma\quad\Rightarrow\quad F-P_x=ma\]
+\textbf{Sustitución}
+\[100-49{,}70=12a\]
+\textbf{Procedimiento}
+\[F_R=50{,}30\ \mathrm{N},\qquad a=\frac{50{,}30}{12}\]
+\res{F_R\approx50{,}30\ \mathrm{N}\qquad a\approx4{,}19\ \mathrm{m/s^2}}
+El bloque acelera hacia arriba del plano.
+\end{frame}
+\section{Poleas}
+\begin{frame}{Modelo de cuerda y polea ideales}
+\begin{itemize}
+\item La cuerda tiene masa despreciable y no se estira.
+\item La polea es ideal: sin masa ni fricción.
+\item La tensión tiene igual magnitud en los tramos de la misma cuerda.
+\item Los cuerpos unidos comparten la magnitud de la aceleración.
+\item Se escribe \(\sum F=ma\) para cada cuerpo por separado.
+\end{itemize}
+\begin{alertblock}{Regla esencial}
+El peso de la masa colgante no es, en general, igual a la tensión cuando existe aceleración.
+\end{alertblock}
+\end{frame}
+\begin{frame}{Máquina de Atwood: diagrama}
+\begin{columns}
+\column{.5\textwidth}
+\centering
+\begin{tikzpicture}[scale=.9]
+\draw[thick] (-1.2,2.45)--(1.2,2.45);
+\draw[thick] (0,2.45)--(0,2.13);
+\draw[fill=gray!20] (0,1.78) circle (.35);
+\draw[thick] (-.35,1.78)--(-.35,-.35);
+\draw[thick] (.35,1.78)--(.35,.25);
+\draw[block] (-.83,-1.05) rectangle (.13,-.35);
+\draw[block,fill=green!12] (.08,-.45) rectangle (1.04,.25);
+\node at (-.35,-.7) {$m_1$};\node at (.56,-.1) {$m_2$};
+\draw[force,azul] (-1.15,-.2)--(-1.15,-1.2) node[below] {$a$};
+\draw[force,verde] (1.35,-.4)--(1.35,.6) node[above] {$a$};
+\end{tikzpicture}
+\column{.5\textwidth}
+Si \(m_1>m_2\), la masa mayor baja.
+\[P_1-T=m_1a\]
+\[T-P_2=m_2a\]
+Al sumar:
+\[P_1-P_2=(m_1+m_2)a\]
+\end{columns}
+\end{frame}
+\begin{frame}{Máquina de Atwood: fórmulas de los apuntes}
+\begin{block}{Aceleración}
+\[\boxed{a=\frac{P_{\mathrm{mayor}}-P_{\mathrm{menor}}}{m_1+m_2}}\]
+\end{block}
+\begin{block}{Tensión usando la masa menor}
+\[\boxed{T=P_{\mathrm{menor}}+m_{\mathrm{menor}}a}\]
+\end{block}
+\begin{block}{Tensión usando la masa mayor}
+\[\boxed{T=P_{\mathrm{mayor}}-m_{\mathrm{mayor}}a}\]
+\end{block}
+Las dos expresiones de tensión deben dar el mismo resultado.
+\end{frame}
+\begin{frame}{Ejemplo 4. Máquina de Atwood: datos y aceleración}
+Dos masas de \(12\ \mathrm{kg}\) y \(10\ \mathrm{kg}\) están conectadas por una polea ideal. Determine \(a\) y \(T\).
+\textbf{Datos}
+\[m_1=12\ \mathrm{kg},\quad m_2=10\ \mathrm{kg},\quad g=9{,}8\ \mathrm{m/s^2}\]
+\textbf{Fórmula}
+\[a=\frac{P_{\mathrm{mayor}}-P_{\mathrm{menor}}}{m_1+m_2}\]
+\textbf{Sustitución}
+\[a=\frac{12(9{,}8)-10(9{,}8)}{12+10}\]
+\textbf{Procedimiento}
+\[a=\frac{117{,}6-98}{22}=\frac{19{,}6}{22}\]
+\res{a\approx0{,}8909\ \mathrm{m/s^2}}
+\end{frame}
+\begin{frame}{Ejemplo 4. Tensión por la masa menor}
+\textbf{Fórmula}
+\[T=P_{\mathrm{menor}}+m_{\mathrm{menor}}a\]
+\textbf{Sustitución}
+\[T=98+10\left(\frac{19{,}6}{22}\right)\]
+\textbf{Procedimiento}
+\[T=98+8{,}9091\]
+\res{T\approx106{,}91\ \mathrm{N}}
+La masa de \(12\ \mathrm{kg}\) desciende y la de \(10\ \mathrm{kg}\) asciende.
+\end{frame}
+\begin{frame}{Ejemplo 4. Comprobación con la masa mayor}
+\textbf{Fórmula}
+\[T=P_{\mathrm{mayor}}-m_{\mathrm{mayor}}a\]
+\textbf{Sustitución}
+\[T=117{,}6-12\left(\frac{19{,}6}{22}\right)\]
+\textbf{Procedimiento}
+\[T=117{,}6-10{,}6909\]
+\res{T\approx106{,}91\ \mathrm{N}}
+Se obtiene la misma tensión por ambos cuerpos.
+\end{frame}
+\begin{frame}{Bloque horizontal y masa colgante: esquema}
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+\draw[ground] (-3,0)--(1.6,0);
+\draw[block] (-2.15,0) rectangle (-.9,.85);
+\node at (-1.525,.42) {$m_1$};
+\draw[fill=gray!20] (1.6,.47) circle (.34);
+\draw[thick] (-.9,.67)--(1.6,.81);
+\draw[thick] (1.94,.47)--(1.94,-1.1);
+\draw[block,fill=green!12] (1.48,-1.9) rectangle (2.4,-1.1);
+\node at (1.94,-1.5) {$m_2$};
+\draw[force,azul] (-1.5,1.1)--(-.45,1.1) node[right] {$a$};
+\draw[force,azul] (2.75,-1.1)--(2.75,-1.9) node[below] {$a$};
+\draw[force,morado] (-2.15,.25)--(-3,.25) node[left] {$f_k$};
+\end{tikzpicture}
+\end{center}
+La masa colgante desciende y el bloque horizontal se mueve hacia la polea. La fricción, si existe, se opone a ese desplazamiento.
+\end{frame}
+\begin{frame}{Sistema horizontal: diagramas de cuerpo libre}
+\begin{columns}
+\column{.5\textwidth}
+\centering\textbf{Bloque horizontal \(m_1\)}
+\begin{tikzpicture}[scale=.82]
+\fill (0,0) circle (2pt);
+\draw[force,verde] (0,0)--(0,1.5) node[above] {$N$};
+\draw[force,rojo] (0,0)--(0,-1.5) node[below] {$P_1$};
+\draw[force,azul] (0,0)--(1.7,0) node[right] {$T$};
+\draw[force,morado] (0,0)--(-1.7,0) node[left] {$f_k$};
+\end{tikzpicture}
+\[T-f_k=m_1a\]
+\column{.5\textwidth}
+\centering\textbf{Masa colgante \(m_2\)}
+\begin{tikzpicture}[scale=.82]
+\fill (0,0) circle (2pt);
+\draw[force,verde] (0,0)--(0,1.5) node[above] {$T$};
+\draw[force,rojo] (0,0)--(0,-1.5) node[below] {$P_2$};
+\end{tikzpicture}
+\[P_2-T=m_2a\]
+\end{columns}
+\end{frame}
+\begin{frame}{Sistema horizontal: fórmulas de los apuntes}
+\begin{block}{Aceleración (masa colgante descendiendo)}
+\[\boxed{a=\frac{P_{\mathrm{colgante}}-f_k}{m_1+m_2}}\]
+\end{block}
+\begin{block}{Tensión desde la masa del plano}
+\[\boxed{T=m_{\mathrm{plano}}a+f_k}\]
+\end{block}
+\begin{block}{Tensión desde la masa colgante}
+\[\boxed{T=P_{\mathrm{colgante}}-m_{\mathrm{colgante}}a}\]
+\end{block}
+Si no hay fricción, se utiliza \(f_k=0\).
+\end{frame}
+\begin{frame}{Ejemplo 5. Sistema horizontal sin fricción}
+Un bloque de \(10\ \mathrm{kg}\) se conecta mediante una polea ideal a una masa colgante de \(15\ \mathrm{kg}\). Determine \(a\) y \(T\).
+\textbf{Datos}
+\[m_1=10\ \mathrm{kg},\quad m_2=15\ \mathrm{kg},\quad f_k=0\]
+\textbf{Fórmula}
+\[a=\frac{P_{\mathrm{colgante}}}{m_1+m_2}\]
+\textbf{Sustitución}
+\[a=\frac{15(9{,}8)}{10+15}\]
+\textbf{Procedimiento}
+\[a=\frac{147}{25}\]
+\res{a=5{,}88\ \mathrm{m/s^2}}
+\end{frame}
+\begin{frame}{Ejemplo 5. Tensión}
+\textbf{Fórmula}
+\[T=m_{\mathrm{plano}}a\]
+\textbf{Sustitución}
+\[T=10(5{,}88)\]
+\textbf{Procedimiento}
+\[T=58{,}8\ \mathrm{N}\]
+\res{T=58{,}8\ \mathrm{N}}
+\textbf{Comprobación:}
+\[T=147-15(5{,}88)=58{,}8\ \mathrm{N}\]
+\end{frame}
+\begin{frame}{Ejemplo 6. Hallar el coeficiente de fricción}
+Un bloque de \(20\ \mathrm{kg}\) se conecta a una masa colgante de \(15\ \mathrm{kg}\). El sistema acelera a \(3\ \mathrm{m/s^2}\), con la masa colgante descendiendo.
+\begin{block}{Determine}
+\begin{enumerate}
+\item La fuerza de fricción cinética.
+\item El coeficiente de fricción cinética.
+\item La tensión de la cuerda.
+\end{enumerate}
+\end{block}
+\dato{\(m_1=20\ \mathrm{kg}\), \(m_2=15\ \mathrm{kg}\), \(a=3\ \mathrm{m/s^2}\).}
+\end{frame}
+\begin{frame}{Ejemplo 6. Fuerza de fricción}
+\textbf{Fórmula}
+\[a=\frac{P_{\mathrm{colgante}}-f_k}{m_1+m_2}\]
+\textbf{Despeje}
+\[f_k=P_{\mathrm{colgante}}-(m_1+m_2)a\]
+\textbf{Sustitución}
+\[f_k=15(9{,}8)-(20+15)(3)\]
+\textbf{Procedimiento}
+\[f_k=147-105\]
+\res{f_k=42\ \mathrm{N}}
+\end{frame}
+\begin{frame}{Ejemplo 6. Coeficiente de fricción}
+\textbf{Fórmulas}
+\[N=m_1g,\qquad \mu_k=\frac{f_k}{N}\]
+\textbf{Sustitución}
+\[N=20(9{,}8)=196\ \mathrm{N}\]
+\[\mu_k=\frac{42}{196}\]
+\textbf{Procedimiento}
+\[\mu_k\approx0{,}2143\]
+\res{\mu_k\approx0{,}214}
+El coeficiente de fricción no tiene unidades.
+\end{frame}
+\begin{frame}{Ejemplo 6. Tensión}
+\textbf{Fórmula}
+\[T=m_{\mathrm{plano}}a+f_k\]
+\textbf{Sustitución}
+\[T=20(3)+42\]
+\textbf{Procedimiento}
+\[T=60+42\]
+\res{T=102\ \mathrm{N}}
+\textbf{Comprobación:}
+\[T=15(9{,}8)-15(3)=102\ \mathrm{N}\]
+\end{frame}
+\begin{frame}{Ejemplo 7. Ejercicio de los apuntes: enunciado}
+Un bloque de \(20\ \mathrm{kg}\) se conecta a una masa colgante de \(33\ \mathrm{kg}\). La fuerza de fricción sobre el bloque horizontal es \(21{,}56\ \mathrm{N}\).
+\begin{block}{Determine}
+\begin{enumerate}
+\item La aceleración del sistema.
+\item La tensión de la cuerda.
+\item Compruebe la tensión con ambos cuerpos.
+\end{enumerate}
+\end{block}
+\dato{\(m_1=20\ \mathrm{kg}\), \(m_2=33\ \mathrm{kg}\), \(f_k=21{,}56\ \mathrm{N}\).}
+\end{frame}
+\begin{frame}{Ejemplo 7. Aceleración}
+\textbf{Fórmula}
+\[a=\frac{P_{\mathrm{colgante}}-f_k}{m_1+m_2}\]
+\textbf{Sustitución}
+\[a=\frac{33(9{,}8)-21{,}56}{20+33}\]
+\textbf{Procedimiento}
+\[a=\frac{323{,}4-21{,}56}{53}=\frac{301{,}84}{53}\]
+\res{a\approx5{,}70\ \mathrm{m/s^2}}
+\end{frame}
+\begin{frame}{Ejemplo 7. Tensión desde el bloque horizontal}
+\textbf{Fórmula}
+\[T=m_{\mathrm{plano}}a+f_k\]
+\textbf{Sustitución}
+\[T=20\left(\frac{301{,}84}{53}\right)+21{,}56\]
+\textbf{Procedimiento}
+\[T\approx113{,}90+21{,}56\]
+\res{T\approx135{,}46\ \mathrm{N}}
+\end{frame}
+\begin{frame}{Ejemplo 7. Comprobación desde la masa colgante}
+\textbf{Fórmula}
+\[T=P_{\mathrm{colgante}}-m_{\mathrm{colgante}}a\]
+\textbf{Sustitución}
+\[T=323{,}4-33\left(\frac{301{,}84}{53}\right)\]
+\textbf{Procedimiento}
+\[T\approx323{,}4-187{,}94\]
+\res{T\approx135{,}46\ \mathrm{N}}
+Se obtiene el mismo resultado sin redondear la aceleración antes del cálculo.
+\end{frame}
+\section{Resumen}
+\begin{frame}{Formulario: bloques y planos}
+\begin{columns}[T]
+\column{.5\textwidth}
+\textbf{Segunda ley}
+\[\sum F_x=ma_x\]
+\[\sum F_y=ma_y\]
+\textbf{Peso}
+\[P=mg\]
+\textbf{Fuerza inclinada}
+\[F_x=F\cos\theta\]
+\[F_y=F\operatorname{sen}\theta\]
+\column{.5\textwidth}
+\textbf{Fricción cinética}
+\[f_k=\mu_kN\]
+\textbf{Plano inclinado}
+\[P_x=mg\operatorname{sen}\theta\]
+\[P_y=mg\cos\theta\]
+\[N=mg\cos\theta\]
+\end{columns}
+\end{frame}
+\begin{frame}{Formulario: poleas}
+\textbf{Máquina de Atwood}
+\[a=\frac{P_{\mathrm{mayor}}-P_{\mathrm{menor}}}{m_1+m_2}\]
+\[T=P_{\mathrm{menor}}+m_{\mathrm{menor}}a\]
+\vspace{.2cm}
+\textbf{Bloque horizontal con masa colgante}
+\[a=\frac{P_{\mathrm{colgante}}-f_k}{m_1+m_2}\]
+\[T=m_{\mathrm{plano}}a+f_k\]
+\[T=P_{\mathrm{colgante}}-m_{\mathrm{colgante}}a\]
+\end{frame}
+\begin{frame}{Estrategia para resolver cualquier ejercicio}
+\begin{enumerate}
+\item \textbf{Datos:} escribir masas, fuerzas, ángulos y coeficientes.
+\item \textbf{DCL:} identificar todas las fuerzas de cada cuerpo.
+\item \textbf{Ejes:} escoger sentidos positivos coherentes.
+\item \textbf{Fórmulas:} escribir \(\sum F_x=ma_x\) y \(\sum F_y=ma_y\).
+\item \textbf{Sustitución:} colocar los valores con unidades.
+\item \textbf{Procedimiento:} despejar y calcular sin redondear antes de tiempo.
+\item \textbf{Respuesta:} expresar magnitud, unidad y dirección.
+\end{enumerate}
+\end{frame}
+\begin{frame}{Actividad de cierre}
+Un bloque de \(15\ \mathrm{kg}\) se desliza sobre una superficie horizontal. Se le aplica una fuerza de \(100\ \mathrm{N}\) a \(30^\circ\) sobre la horizontal. El coeficiente de fricción cinética es \(0{,}20\).
+\begin{block}{Calcule}
+\begin{enumerate}
+\item El peso del bloque.
+\item La componente vertical de la fuerza aplicada.
+\item La fuerza normal.
+\item La fuerza de fricción cinética.
+\item La aceleración horizontal.
+\end{enumerate}
+\end{block}
+Dibuje el DCL y presente el procedimiento completo.
+\end{frame}
+\begin{frame}
+\centering\vfill
+{\Huge\color{azul} Fin de la presentación}
+\vspace{.7cm}
+{\Large Dinámica y segunda ley de Newton}
+\vspace{.5cm}
+{\LARGE\color{morado}\(\displaystyle\sum\vec F=m\vec a\)}
+\vfill
+\end{frame}
+\end{document}
