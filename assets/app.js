@@ -118,10 +118,30 @@
         </div>
         <div class="hero-art">⚛</div>
       </section>
-      <section class="stats">
-        <div class="stat"><b>${String(modules.length).padStart(2, '0')}</b><small>Módulos de estudio</small></div>
-        <div class="stat"><b>${done}/${total}</b><small>Preguntas completadas</small></div>
-        <div class="stat"><b>${Math.round(done / total * 100)} %</b><small>Avance de práctica</small></div>
+      
+<section class="stats">
+  <div class="stat">
+    <b>${String(modules.length).padStart(2, '0')}</b>
+    <small>Módulos de estudio</small>
+  </div>
+
+  <div class="stat">
+    <b>${done}/${total}</b>
+    <small>Preguntas completadas</small>
+  </div>
+
+  <div class="stat">
+    <b>${Math.round(done / total * 100)} %</b>
+    <small>Avance de práctica</small>
+  </div>
+</section>
+
+<div style="text-align:right;margin:12px 0 24px">
+  <button class="btn btn-outline" id="reset-progress">
+    Reiniciar mi progreso
+  </button>
+</div>
+
       </section>
       <div class="section-head">
         <div><h2>Explorá los módulos</h2><p class="muted">Elegí un tema para comenzar o continuar.</p></div>
@@ -346,63 +366,136 @@ function bindRoutes(scope) {
 }
 
 
-  function bind() {
-    bindRoutes(document);
+ 
+function bind() {
+  bindRoutes(document);
 
-    document.querySelectorAll('[data-tab]').forEach(el =>
-      el.addEventListener('click', () => {
-        tab = el.dataset.tab;
-        selected = null;
-        checked = false;
-        render();
-      }));
+  // Navegación entre pestañas
+  document.querySelectorAll('[data-tab]').forEach(el =>
+    el.addEventListener('click', () => {
+      tab = el.dataset.tab;
+      selected = null;
+      checked = false;
+      render();
+    })
+  );
 
-    const searchEl = document.getElementById('search');
-    if (searchEl) {
-      searchEl.addEventListener('input', e => {
-        search = e.target.value;
-        const list = document.getElementById('module-list');
-        list.innerHTML = cards(modules.filter(matches));
-        bindRoutes(list);
-      });
-    }
+  // Buscador de módulos
+  const searchEl = document.getElementById('search');
 
-    const m = modules.find(x => x.id === route);
-    if (!m) return;
+  if (searchEl) {
+    searchEl.addEventListener('input', e => {
+      search = e.target.value;
 
-    if (tab === 'practica') {
-      document.querySelectorAll('[data-choice]').forEach(el =>
-        el.addEventListener('click', () => {
-          selected = Number(el.dataset.choice);
-          document.querySelectorAll('[data-choice]').forEach(x => x.classList.toggle('selected', x === el));
-          document.getElementById('check').disabled = false;
-        }));
+      const list = document.getElementById('module-list');
 
-      document.getElementById('prev')?.addEventListener('click', () => {
-        quizIndex--; selected = null; checked = false; render();
-      });
+      list.innerHTML = cards(modules.filter(matches));
 
-      document.getElementById('check')?.addEventListener('click', () => {
-        checked = true;
-        if (selected === m.quiz[quizIndex].correct) {
-          state[m.id] = Array.from(new Set([...(state[m.id] || []), quizIndex]));
-          save();
-        }
-        render();
-      });
-
-      document.getElementById('next')?.addEventListener('click', () => {
-        if (quizIndex === m.quiz.length - 1) { go('home'); return; }
-        quizIndex++; selected = null; checked = false; render();
-      });
-    }
-
-    if (tab === 'herramienta') {
-      document.querySelectorAll('.field input').forEach(el =>
-        el.addEventListener('input', () => calculate(m)));
-      calculate(m);
-    }
+      bindRoutes(list);
+    });
   }
+
+  // Reiniciar progreso individual
+  const resetBtn = document.getElementById('reset-progress');
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      const confirmar = confirm(
+        '¿Deseás reiniciar tu progreso?\n\n' +
+        'Se eliminarán las respuestas correctas guardadas ' +
+        'en este dispositivo.\n\n' +
+        'Esta acción no se puede deshacer.'
+      );
+
+      if (!confirmar) return;
+
+      // Eliminar respuestas guardadas
+      state = {};
+
+      // Actualizar almacenamiento local
+      save();
+
+      // Reiniciar variables de práctica
+      quizIndex = 0;
+      selected = null;
+      checked = false;
+
+      // Actualizar interfaz
+      render();
+    });
+  }
+
+  // Identificar módulo activo
+  const m = modules.find(x => x.id === route);
+
+  if (!m) return;
+
+  // Práctica interactiva
+  if (tab === 'practica') {
+
+    // Seleccionar respuesta
+    document.querySelectorAll('[data-choice]').forEach(el =>
+      el.addEventListener('click', () => {
+        selected = Number(el.dataset.choice);
+
+        document.querySelectorAll('[data-choice]').forEach(x =>
+          x.classList.toggle('selected', x === el)
+        );
+
+        document.getElementById('check').disabled = false;
+      })
+    );
+
+    // Pregunta anterior
+    document.getElementById('prev')?.addEventListener('click', () => {
+      quizIndex--;
+      selected = null;
+      checked = false;
+      render();
+    });
+
+    // Comprobar respuesta
+    document.getElementById('check')?.addEventListener('click', () => {
+      checked = true;
+
+      if (selected === m.quiz[quizIndex].correct) {
+        state[m.id] = Array.from(
+          new Set([
+            ...(state[m.id] || []),
+            quizIndex
+          ])
+        );
+
+        save();
+      }
+
+      render();
+    });
+
+    // Siguiente pregunta
+    document.getElementById('next')?.addEventListener('click', () => {
+      if (quizIndex === m.quiz.length - 1) {
+        go('home');
+        return;
+      }
+
+      quizIndex++;
+      selected = null;
+      checked = false;
+      render();
+    });
+  }
+
+  // Laboratorio interactivo
+  if (tab === 'herramienta') {
+    document.querySelectorAll('.field input').forEach(el =>
+      el.addEventListener('input', () => calculate(m))
+    );
+
+    calculate(m);
+  }
+}
+
 
   /* ---------- Menú, tema y rutas ---------- */
   menuBtn.addEventListener('click', () => {
