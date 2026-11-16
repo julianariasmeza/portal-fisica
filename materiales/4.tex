@@ -752,6 +752,7 @@ la distancia total recorrida.
 
 \end{frame}
 
+
 % ==========================================
 % DIAPOSITIVA 18
 % ==========================================
@@ -759,57 +760,82 @@ la distancia total recorrida.
 
 \begin{center}
 \begin{tikzpicture}[
- x=0.8cm,
- y=0.35cm,
- >=Stealth
+ x=0.65cm,
+ y=0.25cm,
+ >=Stealth,
+ font=\footnotesize
 ]
 
+% Ejes
 \draw[->,thick]
 (0,0)--(9,0)
 node[right] {$t$ (s)};
 
 \draw[->,thick]
-(0,-5)--(0,7)
+(0,-4.5)--(0,6)
 node[above] {$v$ (m/s)};
 
+% Áreas
 \fill[blue!20]
 (0,0) rectangle (4,4);
 
 \fill[orange!20]
 (4,-3) rectangle (8,0);
 
+% Velocidades
 \draw[very thick,azul]
 (0,4)--(4,4);
 
 \draw[very thick,naranja]
 (4,-3)--(8,-3);
 
+% Cambio instantáneo
 \draw[dashed,gray]
 (4,4)--(4,-3);
 
-\node[left] at (0,4) {4};
+% Valores
+\node[left] at (0,4) {$4$};
 \node[left] at (0,-3) {$-3$};
 
-\node[below right] at (4,0) {4};
-\node[below] at (8,0) {8};
+\node[below right] at (4,0) {$4$};
+\node[below] at (8,0) {$8$};
 
 \end{tikzpicture}
 \end{center}
 
+\vspace{-0.25cm}
+
+{\footnotesize
+En este ejemplo, el cambio de velocidad en
+$t=4\,\mathrm{s}$ es idealizado e instantáneo.
+}
+
+\vspace{-0.15cm}
+
+\begingroup
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+
 \small
-En este ejemplo, el cambio de velocidad
-en $t=4\,\mathrm{s}$ es idealizado
-e instantáneo.
+
 \[
 A_1=(4)(4)=16\,\mathrm{m}
 \]
+
 \[
 A_2=(4)(-3)=-12\,\mathrm{m}
 \]
+
+\begin{center}
 \resultado{\Delta d=16-12=4\,\mathrm{m}}
+\end{center}
+
 \[
 D=16+12=28\,\mathrm{m}
 \]
+
+\endgroup
+
 \end{frame}
 
 % ==========================================
