@@ -331,10 +331,20 @@
   }
 
   /* ---------- Eventos ---------- */
-  function bindRoutes(scope) {
-    scope.querySelectorAll('[data-route]').forEach(el =>
-      el.addEventListener('click', () => go(el.dataset.route)));
-  }
+  
+function bindRoutes(scope) {
+  scope.querySelectorAll('[data-route]').forEach(el => {
+    if (el.dataset.routeBound === 'true') return;
+
+    el.dataset.routeBound = 'true';
+
+    el.addEventListener('click', event => {
+      event.preventDefault();
+      go(el.dataset.route);
+    });
+  });
+}
+
 
   function bind() {
     bindRoutes(document);
