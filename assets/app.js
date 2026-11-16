@@ -91,13 +91,18 @@
   }
 
   function render() {
-    renderNav();
-    const m = modules.find(x => x.id === route);
-    crumb.textContent = m ? 'Inicio / ' + m.name : 'Inicio / Panel de aprendizaje';
-    app.innerHTML = m ? renderModule(m) : renderHome();
-    bind();
-  }
+  renderNav();
 
+  const m = modules.find(x => x.id === route);
+
+  crumb.innerHTML = m
+    ? `<a href="#inicio" data-route="home">Inicio</a> / ${esc(m.name)}`
+    : `<span aria-current="page">Inicio</span> / Panel de aprendizaje`;
+
+  app.innerHTML = m ? renderModule(m) : renderHome();
+
+  bind();
+}
   /* ---------- Inicio ---------- */
   function renderHome() {
     const done = modules.reduce((s, m) => s + (state[m.id]?.length || 0), 0);
