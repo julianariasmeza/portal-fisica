@@ -53,12 +53,12 @@ En ausencia de resistencia del aire, la gravedad produce una aceleración consta
 \begin{columns}[T]
 \column{.48\textwidth}
 \begin{block}{Positivo hacia abajo}
-\[a=+9,8\,\mathrm{m/s^2}\]
+\[g=+9,8\,\mathrm{m/s^2}\]
 Útil para objetos que caen o se lanzan hacia abajo.
 \end{block}
 \column{.48\textwidth}
 \begin{block}{Positivo hacia arriba}
-\[a=-9,8\,\mathrm{m/s^2}\]
+\[g=-9,8\,\mathrm{m/s^2}\]
 Útil para lanzamientos verticales hacia arriba.
 \end{block}
 \end{columns}
@@ -69,14 +69,14 @@ En ausencia de resistencia del aire, la gravedad produce una aceleración consta
 \begin{columns}[T]
 \column{.48\textwidth}
 \begin{block}{Con el tiempo}
-\[v=v_0+at\]
-\[h=v_0t+\frac{at^2}{2}\]
+\[v=v_0+gt\]
+\[h=v_0t+\frac{gt^2}{2}\]
 \[h=\left(\frac{v_0+v}{2}\right)t\]
 \end{block}
 \column{.48\textwidth}
 \begin{block}{Sin el tiempo}
-\[v^2=v_0^2+2ah\]
-\[h=\frac{v^2-v_0^2}{2a}\]
+\[v^2=v_0^2+2gh\]
+\[h=\frac{v^2-v_0^2}{2g}\]
 \end{block}
 \end{columns}
 \vspace{4mm}
@@ -88,12 +88,12 @@ Se deja caer una piedra desde una altura de $78,4\,\mathrm{m}$. Determine el tie
 \end{block}
 \etapa{Datos}
 \[h=78,4\,\mathrm{m}\qquad v_0=0\,\mathrm{m/s}\]
-\[a=+9,8\,\mathrm{m/s^2}\qquad t=?\]
+\[g=+9,8\,\mathrm{m/s^2}\qquad t=?\]
 \begin{center}\small\color{verde}«Se deja caer» significa que parte del reposo.\end{center}
 \end{frame}
 \begin{frame}{Ejemplo 1: tiempo de caída (1/2)}
 \etapa{Fórmula}
-\[h=v_0t+\frac{at^2}{2}\]
+\[h=v_0t+\frac{gt^2}{2}\]
 \etapa{Sustitución}
 \[78,4=0\cdot t+\frac{9,8t^2}{2}\]
 \etapa{Procedimiento}
@@ -109,9 +109,9 @@ Se deja caer una piedra desde una altura de $78,4\,\mathrm{m}$. Determine el tie
 \end{frame}
 \begin{frame}{Ejemplo 2: velocidad de impacto}
 \etapa{Datos}
-\[v_0=0\,\mathrm{m/s},\quad a=+9,8\,\mathrm{m/s^2},\quad t=4\,\mathrm{s}\]
+\[v_0=0\,\mathrm{m/s},\quad g=+9,8\,\mathrm{m/s^2},\quad t=4\,\mathrm{s}\]
 \etapa{Fórmula}
-\[v=v_0+at\]
+\[v=v_0+gt\]
 \etapa{Sustitución y procedimiento}
 \[v=0+(9,8)(4)\]
 \[v=39,2\]
@@ -126,7 +126,7 @@ Se deja caer una piedra desde una altura de $78,4\,\mathrm{m}$. Determine el tie
 \item Mientras sube: $v>0$.
 \item En la altura máxima: $v=0$.
 \item Mientras baja: $v<0$.
-\item En todo momento: $a=-9,8\,\mathrm{m/s^2}$.
+\item En todo momento: $g=-9,8\,\mathrm{m/s^2}$.
 \end{itemize}
 \column{.4\textwidth}
 \centering\begin{tikzpicture}[>=Stealth,scale=.85]
@@ -144,9 +144,9 @@ Se lanza una pelota verticalmente hacia arriba a $29,4\,\mathrm{m/s}$. Calcule e
 \end{block}
 \etapa{Datos}
 \[v_0=+29,4\,\mathrm{m/s}\]
-\[v=0\,\mathrm{m/s}\qquad a=-9,8\,\mathrm{m/s^2}\]
+\[v=0\,\mathrm{m/s}\qquad g=-9,8\,\mathrm{m/s^2}\]
 \etapa{Fórmula}
-\[t=\frac{v-v_0}{a}\]
+\[t=\frac{v-v_0}{g}\]
 \end{frame}
 \begin{frame}{Ejemplo 3: tiempo de subida, solución}
 \etapa{Sustitución}
@@ -162,9 +162,9 @@ La pelota del ejemplo anterior sale con $29,4\,\mathrm{m/s}$. Determine la altur
 \end{block}
 \etapa{Datos}
 \[v_0=+29,4\,\mathrm{m/s},\quad v=0\,\mathrm{m/s}\]
-\[a=-9,8\,\mathrm{m/s^2},\quad h=?\]
+\[g=-9,8\,\mathrm{m/s^2},\quad h=?\]
 \etapa{Fórmula}
-\[h=\frac{v^2-v_0^2}{2a}\]
+\[h=\frac{v^2-v_0^2}{2g}\]
 \end{frame}
 \begin{frame}{Ejemplo 4: altura máxima, solución}
 \etapa{Sustitución}
@@ -187,9 +187,9 @@ La pelota sube durante $3\,\mathrm{s}$ y regresa a la misma altura desde donde f
 \end{frame}
 \begin{frame}{Ejemplo 6: velocidad cuando regresa}
 \etapa{Datos}
-\[v_0=+29,4\,\mathrm{m/s},\quad a=-9,8\,\mathrm{m/s^2},\quad t=6\,\mathrm{s}\]
+\[v_0=+29,4\,\mathrm{m/s},\quad g=-9,8\,\mathrm{m/s^2},\quad t=6\,\mathrm{s}\]
 \etapa{Fórmula}
-\[v=v_0+at\]
+\[v=v_0+gt\]
 \etapa{Sustitución}
 \[v=29,4+(-9,8)(6)\]
 \etapa{Procedimiento}
@@ -202,18 +202,18 @@ La pelota sube durante $3\,\mathrm{s}$ y regresa a la misma altura desde donde f
 Una pelota se lanza verticalmente hacia abajo con $v_0=5\,\mathrm{m/s}$. Calcule la velocidad a los $3\,\mathrm{s}$.
 \end{block}
 \etapa{Datos}
-\[v_0=+5\,\mathrm{m/s},\quad a=+9,8\,\mathrm{m/s^2},\quad t=3\,\mathrm{s}\]
+\[v_0=+5\,\mathrm{m/s},\quad g=+9,8\,\mathrm{m/s^2},\quad t=3\,\mathrm{s}\]
 \etapa{Fórmula}
-\[v=v_0+at\]
+\[v=v_0+gt\]
 \etapa{Sustitución y procedimiento}
 \[v=5+(9,8)(3)=5+29,4\]
 \res{v=34,4\,\mathrm{m/s}}
 \end{frame}
 \begin{frame}{Ejemplo 7: desplazamiento hacia abajo}
 \etapa{Datos}
-\[v_0=5\,\mathrm{m/s},\quad a=+9,8\,\mathrm{m/s^2},\quad t=3\,\mathrm{s}\]
+\[v_0=5\,\mathrm{m/s},\quad g=+9,8\,\mathrm{m/s^2},\quad t=3\,\mathrm{s}\]
 \etapa{Fórmula}
-\[h=v_0t+\frac{at^2}{2}\]
+\[h=v_0t+\frac{gt^2}{2}\]
 \etapa{Sustitución}
 \[h=5(3)+\frac{9,8(3)^2}{2}\]
 \etapa{Procedimiento}
@@ -235,9 +235,9 @@ Una pelota se lanza verticalmente hacia abajo con $v_0=5\,\mathrm{m/s}$. Calcule
 \begin{frame}{Práctica C: lanzamiento vertical}\begin{enumerate}\item Se lanza una pelota hacia arriba a $24,5\,\mathrm{m/s}$. Determine tiempo de subida, altura máxima y tiempo total para regresar al mismo nivel.\medskip\item Un objeto se lanza hacia arriba a $19,6\,\mathrm{m/s}$. Determine su velocidad y desplazamiento después de $3\,\mathrm{s}$.\medskip\item Desde una terraza de $15\,\mathrm{m}$ se lanza una pelota hacia arriba a $12\,\mathrm{m/s}$. Determine el tiempo hasta llegar al suelo.\end{enumerate}\end{frame}
 \begin{frame}{Resumen: cómo elegir la fórmula}
 \begin{itemize}
-\item Si conocemos $v_0$, $a$ y $t$: $v=v_0+at$.
-\item Para calcular el desplazamiento con $t$: $h=v_0t+\frac12 at^2$.
-\item Si no conocemos $t$: $v^2=v_0^2+2ah$.
+\item Si conocemos $v_0$, $g$ y $t$: $v=v_0+gt$.
+\item Para calcular el desplazamiento con $t$: $h=v_0t+\frac12 gt^2$.
+\item Si no conocemos $t$: $v^2=v_0^2+2gh$.
 \item Si conocemos las dos velocidades y el tiempo: $h=\left(\frac{v_0+v}{2}\right)t$.
 \end{itemize}
 \vspace{5mm}\centering\color{morado}\bfseries Siempre revisar las unidades y los signos.\end{frame}
